@@ -10863,7 +10863,7 @@ function createMonthView(baseController, layoutContainer, dragHandler, options) 
     monthView = new Month(options, monthViewContainer, baseController.Month);
     moreView = new More(options.month, layoutContainer, baseController.theme);
 
-    // handlers
+    // managers
     clickHandler = new MonthClick(dragHandler, monthView, baseController);
     if (!options.isReadOnly) {
         creationHandler = new MonthCreation(dragHandler, monthView, baseController, options);
@@ -26447,7 +26447,7 @@ TimeGrid.prototype.scrollToNow = function() {
 };
 
 /**********
- * Schedule handlers
+ * Schedule managers
  **********/
 
 /**

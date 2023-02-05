@@ -1,0 +1,4 @@
+<?php
+
+$appName = 'PassHub';
+$baseUrl = '';

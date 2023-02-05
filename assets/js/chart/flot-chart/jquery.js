@@ -1356,7 +1356,7 @@ jQuery.support = (function() {
 	if ( !div.addEventListener && div.attachEvent && div.fireEvent ) {
 		div.attachEvent( "onclick", clickFn = function() {
 			// Cloning a node shouldn't copy over any
-			// bound event handlers (IE does this)
+			// bound event managers (IE does this)
 			support.noCloneEvent = false;
 		});
 		div.cloneNode( true ).fireEvent("onclick");
@@ -2689,7 +2689,7 @@ jQuery.event = {
 			type = tns[1];
 			namespaces = ( tns[2] || "" ).split( "." ).sort();
 
-			// If event changes its type, use the special event handlers for the changed type
+			// If event changes its type, use the special event managers for the changed type
 			special = jQuery.event.special[ type ] || {};
 
 			// If selector defined, determine special event api type, otherwise given type
@@ -2698,7 +2698,7 @@ jQuery.event = {
 			// Update special based on newly reset type
 			special = jQuery.event.special[ type ] || {};
 
-			// handleObj is passed to all event handlers
+			// handleObj is passed to all event managers
 			handleObj = jQuery.extend({
 				type: type,
 				origType: tns[1],
@@ -2804,8 +2804,8 @@ jQuery.event = {
 				}
 			}
 
-			// Remove generic event handler if we removed something and no more handlers exist
-			// (avoids potential for viho recursion during removal of special event handlers)
+			// Remove generic event handler if we removed something and no more managers exist
+			// (avoids potential for viho recursion during removal of special event managers)
 			if ( eventType.length === 0 && origCount !== eventType.length ) {
 				if ( !special.teardown || special.teardown.call( elem, namespaces, elemData.handle ) === false ) {
 					jQuery.removeEvent( elem, type, elemData.handle );
@@ -2825,8 +2825,8 @@ jQuery.event = {
 		}
 	},
 
-	// Events that are safe to short-circuit if no handlers are attached.
-	// Native DOM events should not be added, they may have inline handlers.
+	// Events that are safe to short-circuit if no managers are attached.
+	// Native DOM events should not be added, they may have inline managers.
 	customEvent: {
 		"getData": true,
 		"setData": true,
@@ -2863,7 +2863,7 @@ jQuery.event = {
 		}
 
 		if ( (!elem || jQuery.event.customEvent[ type ]) && !jQuery.event.global[ type ] ) {
-			// No jQuery handlers for this event type, and it can't have inline handlers
+			// No jQuery managers for this event type, and it can't have inline managers
 			return;
 		}
 
@@ -2930,7 +2930,7 @@ jQuery.event = {
 			}
 		}
 
-		// Fire handlers on the event path
+		// Fire managers on the event path
 		for ( i = 0; i < eventPath.length && !event.isPropagationStopped(); i++ ) {
 
 			cur = eventPath[i][0];
@@ -3004,7 +3004,7 @@ jQuery.event = {
 			return;
 		}
 
-		// Determine handlers that should run if there are delegated events
+		// Determine managers that should run if there are delegated events
 		// Avoid non-left-click bubbling in Firefox (#3861)
 		if ( delegateCount && !(event.button && event.type === "click") ) {
 
@@ -3034,7 +3034,7 @@ jQuery.event = {
 			}
 		}
 
-		// Add the remaining (directly-bound) handlers
+		// Add the remaining (directly-bound) managers
 		if ( handlers.length > delegateCount ) {
 			handlerQueue.push({ elem: this, matches: handlers.slice( delegateCount ) });
 		}
@@ -3390,7 +3390,7 @@ if ( !jQuery.support.submitBubbles ) {
 				return false;
 			}
 
-			// Remove delegated handlers; cleanData eventually reaps submit handlers attached above
+			// Remove delegated managers; cleanData eventually reaps submit managers attached above
 			jQuery.event.remove( this, "._submit" );
 		}
 	};
@@ -3485,7 +3485,7 @@ jQuery.fn.extend({
 	on: function( types, selector, data, fn, /*INTERNAL*/ one ) {
 		var origFn, type;
 
-		// Types can be a map of types/handlers
+		// Types can be a map of types/managers
 		if ( typeof types === "object" ) {
 			// ( types-Object, selector, data )
 			if ( typeof selector !== "string" ) { // && selector != null
@@ -8295,7 +8295,7 @@ jQuery.ajaxTransport( "script", function(s) {
 
 				script.src = s.url;
 
-				// Attach handlers for all browsers
+				// Attach managers for all browsers
 				script.onload = script.onreadystatechange = function( _, isAbort ) {
 
 					if ( isAbort || !script.readyState || /loaded|complete/.test( script.readyState ) ) {

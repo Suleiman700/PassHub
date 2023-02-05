@@ -3215,7 +3215,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Element.hover
 	     [ method ]
 	     **
-	     * Adds event handlers for hover for the element.
+	     * Adds event managers for hover for the element.
 	     > Parameters
 	     - f_in (function) handler for hover in
 	     - f_out (function) handler for hover out
@@ -3230,7 +3230,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Element.unhover
 	     [ method ]
 	     **
-	     * Removes event handlers for hover for the element.
+	     * Removes event managers for hover for the element.
 	     > Parameters
 	     - f_in (function) handler for hover in
 	     - f_out (function) handler for hover out
@@ -3244,7 +3244,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Element.drag
 	     [ method ]
 	     **
-	     * Adds event handlers for drag of the element.
+	     * Adds event managers for drag of the element.
 	     > Parameters
 	     - onmove (function) handler for moving
 	     - onstart (function) handler for drag start
@@ -3319,7 +3319,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Element.undrag
 	     [ method ]
 	     **
-	     * Removes all drag event handlers from given element.
+	     * Removes all drag event managers from given element.
 	    \*/
 	    elproto.undrag = function () {
 	        var i = draggable.length;
@@ -5545,8 +5545,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	     > Arguments
 
 	     - name (string) name of the *event*, dot (`.`) or slash (`/`) separated
-	     - scope (object) context for the event handlers
-	     - varargs (...) the rest of arguments will be sent to event handlers
+	     - scope (object) context for the event managers
+	     - varargs (...) the rest of arguments will be sent to event managers
 
 	     = (object) array of returned values from the listeners. Array has two methods `.firstDefined()` and `.lastDefined()` to get first or last not `undefined` value.
 	    \*/
@@ -5618,13 +5618,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * eve.listeners
 	     [ method ]
 
-	     * Internal method which gives you array of all event handlers that will be triggered by the given `name`.
+	     * Internal method which gives you array of all event managers that will be triggered by the given `name`.
 
 	     > Arguments
 
 	     - name (string) name of the event, dot (`.`) or slash (`/`) separated
 
-	     = (array) array of event handlers
+	     = (array) array of event managers
 	    \*/
 	    eve.listeners = function (name) {
 	        var names = isArray(name) ? name : name.split(separator),
@@ -5691,14 +5691,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	     - name (array) if you don’t want to use separators, you can use array of strings
 	     - f (function) event handler function
 	     **
-	     = (function) returned function accepts a single numeric parameter that represents z-index of the handler. It is an optional feature and only used when you need to ensure that some subset of handlers will be invoked in a given order, despite of the order of assignment. 
+	     = (function) returned function accepts a single numeric parameter that represents z-index of the handler. It is an optional feature and only used when you need to ensure that some subset of managers will be invoked in a given order, despite of the order of assignment.
 	     > Example:
 	     | eve.on("mouse", eatIt)(2);
 	     | eve.on("mouse", scream);
 	     | eve.on("mouse", catchIt)(1);
 	     * This will ensure that `catchIt` function will be called before `eatIt`.
 	     *
-	     * If you want to put your handler before non-indexed handlers, specify a negative value.
+	     * If you want to put your handler before non-indexed managers, specify a negative value.
 	     * Note: I assume most of the time you don’t need to worry about z-index, but it’s nice to have this feature “just in case”.
 	    \*/
 	    eve.on = function (name, f) {
@@ -6545,7 +6545,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * Element.node
 	         [ property (object) ]
 	         **
-	         * Gives you a reference to the DOM object, so you can assign event handlers or just mess around.
+	         * Gives you a reference to the DOM object, so you can assign event managers or just mess around.
 	         **
 	         * Note: Don’t mess with it.
 	         > Usage

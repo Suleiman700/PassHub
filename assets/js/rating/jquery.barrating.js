@@ -393,7 +393,7 @@
             };
 
             var detachHandlers = function($elements) {
-                // remove event handlers in the ".barrating" namespace
+                // remove event managers in the ".barrating" namespace
                 $elements.off('.barrating');
             };
 
@@ -495,7 +495,7 @@
                 var text = ratingText();
                 var options = getData('userOptions');
 
-                // detach handlers
+                // detach managers
                 detachHandlers(self.$widget.find('a'));
 
                 // remove widget

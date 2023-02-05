@@ -5945,7 +5945,7 @@ var LinkDialog = /** @class */ (function () {
         this.ui.toggleBtn($linkBtn, $linkText.val() && $linkUrl.val());
     };
     /**
-     * Show link dialog and set event handlers on dialog controls.
+     * Show link dialog and set event managers on dialog controls.
      *
      * @param {Object} linkInfo
      * @return {Promise}

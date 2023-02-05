@@ -29,7 +29,7 @@
         }
     });
 
-    // event handlers
+    // event managers
     cal.on({
         'clickMore': function(e) {
             console.log('clickMore', e);

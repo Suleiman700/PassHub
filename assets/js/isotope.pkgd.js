@@ -1936,7 +1936,7 @@ proto._getElementOffset = function( elem ) {
 
 // -------------------------- resize -------------------------- //
 
-// enable event handlers for listeners
+// enable event managers for listeners
 // i.e. resize -> onresize
 proto.handleEvent = utils.handleEvent;
 

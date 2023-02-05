@@ -106,7 +106,7 @@ var Emitter = function () {
         return this;
       }
 
-      // remove all handlers
+      // remove all managers
       if (arguments.length === 1) {
         delete this._callbacks[event];
         return this;

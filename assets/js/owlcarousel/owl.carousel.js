@@ -45,7 +45,7 @@
 		this.$element = $(element);
 
 		/**
-		 * Proxied event handlers.
+		 * Proxied event managers.
 		 * @protected
 		 */
 		this._handlers = {};
@@ -531,7 +531,7 @@
 		this.initializeStage();
 		this.initializeItems();
 
-		// register event handlers
+		// register event managers
 		this.registerEventHandlers();
 
 		this.leave('initializing');
@@ -724,7 +724,7 @@
 	};
 
 	/**
-	 * Registers event handlers.
+	 * Registers event managers.
 	 * @todo Check `msPointerEnabled`
 	 * @todo #261
 	 * @protected
@@ -1791,7 +1791,7 @@
 		this._visible = null;
 
 		/**
-		 * All event handlers.
+		 * All event managers.
 		 * @protected
 		 * @type {Object}
 		 */
@@ -1806,7 +1806,7 @@
 		// set default options
 		this._core.options = $.extend({}, AutoRefresh.Defaults, this._core.options);
 
-		// register event handlers
+		// register event managers
 		this._core.$element.on(this._handlers);
 	};
 
@@ -1897,7 +1897,7 @@
 		this._loaded = [];
 
 		/**
-		 * Event handlers.
+		 * Event managers.
 		 * @protected
 		 * @type {Object}
 		 */
@@ -2041,7 +2041,7 @@
 		this._previousHeight = null;
 
 		/**
-		 * All event handlers.
+		 * All event managers.
 		 * @protected
 		 * @type {Object}
 		 */
@@ -2067,7 +2067,7 @@
 		// set default options
 		this._core.options = $.extend({}, AutoHeight.Defaults, this._core.options);
 
-		// register event handlers
+		// register event managers
 		this._core.$element.on(this._handlers);
 		this._intervalId = null;
 		var refThis = this;
@@ -2186,7 +2186,7 @@
 		this._playing = null;
 
 		/**
-		 * All event handlers.
+		 * All event managers.
 		 * @todo The cloned content removale is too late
 		 * @protected
 		 * @type {Object}
@@ -2229,7 +2229,7 @@
 		// set default options
 		this._core.options = $.extend({}, Video.Defaults, this._core.options);
 
-		// register event handlers
+		// register event managers
 		this._core.$element.on(this._handlers);
 
 		this._core.$element.on('click.owl.video', '.owl-video-play-icon', $.proxy(function(e) {
@@ -2651,7 +2651,7 @@
 		this._paused = true;
 
 		/**
-		 * All event handlers.
+		 * All event managers.
 		 * @protected
 		 * @type {Object}
 		 */
@@ -2706,7 +2706,7 @@
 			}, this)
 		};
 
-		// register event handlers
+		// register event managers
 		this._core.$element.on(this._handlers);
 
 		// set default options
@@ -2902,7 +2902,7 @@
 		};
 
 		/**
-		 * All event handlers.
+		 * All event managers.
 		 * @protected
 		 * @type {Object}
 		 */
@@ -2951,7 +2951,7 @@
 		// set default options
 		this._core.options = $.extend({}, Navigation.Defaults, this._core.options);
 
-		// register event handlers
+		// register event managers
 		this.$element.on(this._handlers);
 	};
 
@@ -3277,7 +3277,7 @@
 		this.$element = this._core.$element;
 
 		/**
-		 * All event handlers.
+		 * All event managers.
 		 * @protected
 		 * @type {Object}
 		 */
@@ -3317,7 +3317,7 @@
 		// set default options
 		this._core.options = $.extend({}, Hash.Defaults, this._core.options);
 
-		// register the event handlers
+		// register the event managers
 		this.$element.on(this._handlers);
 
 		// register event listener for hash navigation

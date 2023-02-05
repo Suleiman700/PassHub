@@ -1630,14 +1630,14 @@ var Chartist = {
     }
 
     /**
-     * Remove an event handler of a specific event name or remove all event handlers for a specific event.
+     * Remove an event handler of a specific event name or remove all event managers for a specific event.
      *
      * @memberof Chartist.Event
-     * @param {String} event The event name where a specific or all handlers should be removed
-     * @param {Function} [handler] An optional event handler function. If specified only this specific handler will be removed and otherwise all handlers are removed.
+     * @param {String} event The event name where a specific or all managers should be removed
+     * @param {Function} [handler] An optional event handler function. If specified only this specific handler will be removed and otherwise all managers are removed.
      */
     function removeEventHandler(event, handler) {
-      // Only do something if there are event handlers with this name existing
+      // Only do something if there are event managers with this name existing
       if(handlers[event]) {
         // If handler is set we will look for a specific handler and only remove this
         if(handler) {
@@ -1646,28 +1646,28 @@ var Chartist = {
             delete handlers[event];
           }
         } else {
-          // If no handler is specified we remove all handlers for this event
+          // If no handler is specified we remove all managers for this event
           delete handlers[event];
         }
       }
     }
 
     /**
-     * Use this function to emit an event. All handlers that are listening for this event will be triggered with the data parameter.
+     * Use this function to emit an event. All managers that are listening for this event will be triggered with the data parameter.
      *
      * @memberof Chartist.Event
      * @param {String} event The event name that should be triggered
      * @param {*} data Arbitrary data that will be passed to the event handler callback functions
      */
     function emit(event, data) {
-      // Only do something if there are event handlers with this name existing
+      // Only do something if there are event managers with this name existing
       if(handlers[event]) {
         handlers[event].forEach(function(handler) {
           handler(data);
         });
       }
 
-      // Emit event to star event handlers
+      // Emit event to star event managers
       if(handlers['*']) {
         handlers['*'].forEach(function(starHandler) {
           starHandler(event, data);
@@ -1868,7 +1868,7 @@ var Chartist = {
   }
 
   /**
-   * Use this function to register event handlers. The handler callbacks are synchronous and will run in the main thread rather than the event loop.
+   * Use this function to register event managers. The handler callbacks are synchronous and will run in the main thread rather than the event loop.
    *
    * @memberof Chartist.Base
    * @param {String} event Name of the event. Check the examples for supported events.
@@ -1880,11 +1880,11 @@ var Chartist = {
   }
 
   /**
-   * Use this function to un-register event handlers. If the handler function parameter is omitted all handlers for the given event will be un-registered.
+   * Use this function to un-register event managers. If the handler function parameter is omitted all managers for the given event will be un-registered.
    *
    * @memberof Chartist.Base
    * @param {String} event Name of the event for which a handler should be removed
-   * @param {Function} [handler] The handler function that that was previously used to register a new event handler. This handler will be removed from the event handler list. If this parameter is omitted then all event handlers for the given event are removed from the list.
+   * @param {Function} [handler] The handler function that that was previously used to register a new event handler. This handler will be removed from the event handler list. If this parameter is omitted then all event managers for the given event are removed from the list.
    */
   function off(event, handler) {
     this.eventEmitter.removeEventHandler(event, handler);

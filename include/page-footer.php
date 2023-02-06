@@ -15,4 +15,6 @@
 <!-- Theme js-->
 <script src="../../assets/js/script.js"></script>
 <!-- login js-->
+<script src="../../assets/js/theme-customizer/customizer.js"></script>
 <!-- Plugin used-->
+

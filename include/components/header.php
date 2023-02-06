@@ -5,7 +5,15 @@ require_once '../../classes/authentication/Session.php';
 $Session = new Session();
 if (!$Session->isLogged()) {
     header('Location: ../login/index.php');
+    exit;
 }
+
+// get user data from session
+$session_username = $Session->getSessionUsername();
+$session_userEmail = $Session->getSessionUserEmail();
+$session = $Session->getSessionUserEmail();
+
+
 ?>
 
 <div class="page-main-header">

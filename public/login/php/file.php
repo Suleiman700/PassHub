@@ -60,7 +60,7 @@ if (isset($_POST['model']) && $_POST['model'] === 'performLogin') {
             }
             else {
                 // set logged in session
-                $Session->set_logged_session($userData['data']['id'], $userData['data']['email']);
+                $Session->set_logged_session($userData['data']['id'], $userData['data']['email'], $userData['data']['username']);
 
                 $state = true;
             }

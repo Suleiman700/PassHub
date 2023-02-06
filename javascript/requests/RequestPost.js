@@ -1,5 +1,5 @@
 
-class RequestGet {
+class RequestPost {
     constructor() {}
 
     /**
@@ -13,7 +13,7 @@ class RequestGet {
         return new Promise((resolve, reject) => {
             $.ajax({
                 url: _url,
-                method: "GET",
+                method: "POST",
                 data: {
                     ..._data,
                     model: _model
@@ -44,4 +44,4 @@ class RequestGet {
     }
 }
 
-export default new RequestGet()
+export default new RequestPost()

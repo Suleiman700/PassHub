@@ -14,7 +14,7 @@ import EmailValidator from '/javascript/validators/EmailValidator.js';
 import PinCodeValidator from '/javascript/validators/PinCodeValidator.js';
 
 // requests
-import RequestGet from '/javascript/requests/RequestGet.js';
+import RequestPost from '/javascript/requests/RequestPost.js';
 
 
 
@@ -85,7 +85,7 @@ class Login {
             }
 
 
-            const response = await RequestGet.send('./php/file.php', data, 'performLogin')
+            const response = await RequestPost.send('./php/file.php', data, 'performLogin')
 
             // enable login button
             buttonLogin.enabled(true)

@@ -15,7 +15,6 @@ class Save {
 
     async performSave() {
         // disable buttons
-        buttonSubmit.showSpinner(true)
         buttonSubmit.enabled(false)
         ButtonCancel.enabled(false)
 
@@ -25,27 +24,28 @@ class Save {
         inputs.forEach(input => input.enabled(false))
 
         const data = {
-            categoryId: new URL(location.href).searchParams.get('id'), // get category id from url
             categoryName: inputCategoryName.valueGet(),
             categoryDescription: inputCategoryDescription.valueGet(),
             categoryColor: inputCategoryColor.valueGet(),
         }
-        const response = await RequestPost.send('./php/file.php', data, 'saveEditedCategory')
+        const response = await RequestPost.send('./php/file.php', data, 'addNewCategory')
 
-        console.log(response)
+        if (response['dataInserted']) {
+            // clear fields
+            inputCategoryName.valueClear()
+            inputCategoryDescription.valueClear()
+            inputCategoryColor.valueClear()
 
-        if (response['dateUpdated']) {
             Swal.fire({
                 icon: 'success',
                 title: 'Yay!',
-                html: 'Category has been updated successfully'
+                html: 'Category has been added successfully'
             })
         }
         else {
             Swal.fire({
                 icon: 'error',
                 title: 'Ops...',
-                // html: 'An error occurred',
                 html:
                     response['errors'].map(error => {
                         return `<h6>${error}</h6>`;
@@ -54,7 +54,6 @@ class Save {
         }
 
         // enable buttons
-        buttonSubmit.showSpinner(false)
         buttonSubmit.enabled(true)
         ButtonCancel.enabled(true)
 

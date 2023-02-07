@@ -76,5 +76,7 @@ if (isset($_POST['model']) && $_POST['model'] === 'performLogin') {
     else {
         echo json_encode(array('state' => false, 'errors' => $errors));
     }
-
+}
+else {
+    echo json_encode(array('state' => false, 'errors' => array('Invalid email address or password')));
 }

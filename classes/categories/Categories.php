@@ -50,7 +50,14 @@ class Categories
         return $res;
     }
 
-    public function update_category(string|int $_categoryId, string|int $_categoryUserId, array $_newCategoryData):array
+    /**
+     * update user category
+     * @param string|int $_categoryId example: 1
+     * @param string|int $_categoryUserId example: 1
+     * @param array $_newCategoryData
+     * @return true[]
+     */
+    public function update_category(string|int $_categoryId, string|int $_categoryUserId, array $_newCategoryData): array
     {
         global $conn;
         $res = array(
@@ -65,5 +72,55 @@ class Categories
         $stmt = mysqli_query($conn, $query);
 
         return $res;
+    }
+
+    public function create_category(string|int $_categoryUserId, array $_newCategoryData): array
+    {
+        global $conn;
+        $res = array(
+            'dataInserted' => false,
+            'errors' => array()
+        );
+
+        // generate new row id
+        $new_key = $this->gen_new_primary_key();
+
+        $name = $_newCategoryData['name'];
+        $description = $_newCategoryData['description'];
+        $color = $_newCategoryData['color'];
+
+        $query = "INSERT INTO categories (id, user_id, name, description, color) VALUES ($new_key, $_categoryUserId, '$name', '$description', '$color')";
+        $result = mysqli_query($conn, $query);
+
+        if (isset($result) && $result === true) {
+            $res['dataInserted'] = true;
+        }
+        else {
+            $res['dataInserted'] = false;
+            $res['errors'][] = 'An error occurred';
+        }
+
+        return $res;
+    }
+
+    /**
+     * generate new primary key for inserting new record into table
+     * @return int
+     */
+    private function gen_new_primary_key(): int
+    {
+        global $conn;
+
+        $query = "SELECT MAX(id) + 1 AS new_primary_key FROM categories";
+        $stmt = mysqli_query($conn, $query);
+        $results = $stmt->fetch_assoc();
+
+        // if found new primary key
+        if ($stmt->num_rows && !empty($results['new_primary_key'])) {
+            return $results['new_primary_key'];
+        }
+        else {
+            return 0;
+        }
     }
 }

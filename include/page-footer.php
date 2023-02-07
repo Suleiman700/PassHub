@@ -17,4 +17,5 @@
 <!-- login js-->
 <script src="../../assets/js/theme-customizer/customizer.js"></script>
 <!-- Plugin used-->
-
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../../assets/libs/sweetalert/sweetalert2_11.7.1.js"></script>

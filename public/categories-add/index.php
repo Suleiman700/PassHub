@@ -2,31 +2,7 @@
 require_once '../../settings/config.php';
 require_once '../../classes/categories/Categories.php';
 require_once '../../classes/authentication/Session.php';
-$pageTitle = "Edit Category | $appName";
-
-
-// check url parameter
-$canEdit = false;
-if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-    $Session = new Session();
-    $Categories = new Categories();
-
-    // get category data by id
-    $categoryData = $Categories->get_category_info($_GET['id']);
-
-    // check if category is found
-    if ($categoryData['dataFound']) {
-        // check if category belongs to user
-        $session_userId = $Session->getSessionUserId();
-        if ($categoryData['data']['id'] == $session_userId) {
-            $canEdit = true;
-        }
-    }
-}
-if (!$canEdit) {
-    header('Location: ../categories-list/index.php');
-    exit;
-}
+$pageTitle = "Add Category | $appName";
 ?>
 
 <!DOCTYPE html>
@@ -63,7 +39,7 @@ require_once '../../include/page-head.php';
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="../dashboard/index.php">Dashboard</a></li>
                                 <li class="breadcrumb-item"><a href="../categories-list/index.php">Categories List</a></li>
-                                <li class="breadcrumb-item active">Edit Category</li>
+                                <li class="breadcrumb-item active">Add Category</li>
                             </ol>
                         </div>
                         <div class="col-sm-6">
@@ -84,26 +60,26 @@ require_once '../../include/page-head.php';
                                     <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label" for="category-name">Name <code>*</code></label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="category-name" value="<?php echo $categoryData['data']['name']; ?>" placeholder="Category name">
+                                            <input type="text" class="form-control" id="category-name" value="" placeholder="Category name">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label" for="category-description">Description</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="category-description" value="<?php echo $categoryData['data']['description']; ?>" placeholder="Category description">
+                                            <input type="text" class="form-control" id="category-description" value="" placeholder="Category description">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label" for="category-color">Color <code>*</code></label>
                                         <div class="col-sm-9">
-                                            <input type="color" class="form-control form-control-color" id="category-color" value="<?php echo $categoryData['data']['color']; ?>" value="#24695c">
+                                            <input type="color" class="form-control form-control-color" id="category-color" value="" value="#24695c">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button class="btn btn-primary" id="submit">Submit</button>
-                                <button class="btn btn-secondary" id="cancel">Cancel</button>
+                                <button class="btn btn-primary" id="submit"><i class="fa fa-save"></i> Save</button>
+                                <button class="btn btn-secondary" id="cancel"><i class="fa fa-times"></i> Cancel</button>
                             </div>
                         </div>
                     </div>

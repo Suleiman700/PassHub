@@ -37,21 +37,16 @@ if (isset($_POST['model']) && $_POST['model'] === 'saveEditedCategory') {
         $validName = true;
     }
 
-    // check category description
-    if (isset($_POST['categoryDescription']) && !empty($_POST['categoryDescription'])) {
-        $validDescription = true;
-    }
-
     // check category color
     if (isset($_POST['categoryColor']) && !empty($_POST['categoryColor'])) {
         $validColor = true;
     }
 
     // check if all parameters are valid
-    if ($validId && $validName && $validDescription && $validColor) {
+    if ($validId && $validName && $validColor) {
         $data = array(
             'name' => trim($_POST['categoryName']),
-            'description' => trim($_POST['categoryDescription']),
+            'description' => trim($_POST['categoryDescription']??''),
             'color' => trim($_POST['categoryColor']),
         );
 

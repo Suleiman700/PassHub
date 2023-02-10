@@ -6,6 +6,7 @@ require_once '../../../classes/users/Users.php';
 class Login
 {
 
+    private string $username = '';
     private string $emailAddress = '';
     private string $password = '';
     private int $pinCode;
@@ -24,6 +25,27 @@ class Login
             return false;
         }
     }
+
+
+    /**
+     * set username
+     * @param string $_username
+     */
+    public function setUsername(string $_username): void
+    {
+        $this->username = $_username;
+    }
+
+    /**
+     * get username
+     * @return string
+     */
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+
+
 
     /**
      * set email address

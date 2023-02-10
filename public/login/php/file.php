@@ -43,7 +43,7 @@ if (isset($_POST['model']) && $_POST['model'] === 'performLogin') {
         $state = '';
 
         // check if user found by email address
-        $userData = $Users->get_data_by_email('soleman630@gmail.com');
+        $userData = $Users->get_data_by_email($Login->getEmailAddress());
 
         // user found
         if ($userData['state']) {
@@ -60,7 +60,7 @@ if (isset($_POST['model']) && $_POST['model'] === 'performLogin') {
             }
             else {
                 // set logged in session
-                $Session->set_logged_session($userData['data']['id'], $userData['data']['email'], $userData['data']['username']);
+                $Session->set_logged_session($userData['data']['id'], $userData['data']['email'], $userData['data']['fullname']);
 
                 $state = true;
             }

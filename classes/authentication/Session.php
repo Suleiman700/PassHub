@@ -8,7 +8,7 @@ class Session
 
     private string $session_userId = 'PASSHUB_USERID';
     private string $session_userEmail = 'PASSHUB_USEREMAIL';
-    private string $session_username = 'PASSHUB_USERNAME';
+    private string $session_fullname = 'PASSHUB_USERNAME';
 
     function __contructor(): void
     {}
@@ -50,15 +50,15 @@ class Session
      */
     public function getSessionUsername(): string
     {
-        return $_SESSION[$this->session_username];
+        return $_SESSION[$this->session_fullname];
     }
 
     /**
-     * @param string $session_username
+     * @param string $session_fullname
      */
-    public function setSessionUsername(string $session_username): void
+    public function setSessionUsername(string $session_fullname): void
     {
-        $_SESSION[$this->session_username] = $session_username;
+        $_SESSION[$this->session_fullname] = $session_fullname;
     }
 
 
@@ -80,14 +80,15 @@ class Session
      * receive user data and set logged in session
      * @param int $_userId example: 1
      * @param string $_userEmail example: person@domain.com
+     * @param string $_fullname example: John Doe
      * @return void
      */
-    public function set_logged_session(int $_userId, string $_userEmail, string $_username): void
+    public function set_logged_session(int $_userId, string $_userEmail, string $_fullname): void
     {
         $_SESSION[$this->session_isLogged] = true;
         $_SESSION[$this->session_userId] = $_userId;
         $_SESSION[$this->session_userEmail] = $_userEmail;
-        $_SESSION[$this->session_username] = $_username;
+        $_SESSION[$this->session_fullname] = $_fullname;
     }
 
     /**

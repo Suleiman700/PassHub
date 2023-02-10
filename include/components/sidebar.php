@@ -29,7 +29,7 @@
                         </div>
                     </li>
                     <li class="dropdown"><a class="nav-link menu-title link-nav" href="../categories-list/index.php"><i data-feather="list"></i><span>Categories List</span></a></li>
-                    <li class="dropdown"><a class="nav-link menu-title link-nav" href="contacts.html"><i data-feather="plus"></i><span>Add Category</span></a></li>
+                    <li class="dropdown"><a class="nav-link menu-title link-nav" href="../categories-add/index.php"><i data-feather="plus"></i><span>Add Category</span></a></li>
 <!--                    <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="home"></i><span>Dashboard</span></a>-->
 <!--                        <ul class="nav-submenu menu-content">-->
 <!--                            <li><a href="index.html">Default</a></li>-->

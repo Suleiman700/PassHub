@@ -1,7 +1,7 @@
 <?php
 require_once '../../settings/config.php';
 require_once '../../classes/authentication/Session.php';
-$pageTitle = "Login | $appName";
+$pageTitle = "Register | $appName";
 
 // redirect logged-in users to dashboard
 $Session = new Session();
@@ -31,12 +31,19 @@ require_once '../../include/page-head.php';
         <div class="row">
             <div class="col-12">
                 <div class="login-card">
-                    <div class="theme-form login-form" id="login-form">
+                    <div class="theme-form login-form" id="register-form">
                         <div class="text-center">
-                            <h4>Login</h4>
-                            <h6>Welcome back! Log in to your account.</h6>
+                            <h4>Register</h4>
+                            <h6>You are one step from creating your account!</h6>
                         </div>
                         <div class="alert alert-danger" role="alert" id="alert" style="display: none;"></div>
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <div class="input-group"><span class="input-group-text">
+                                <i class="icon-user"></i></span>
+                                <input type="text" class="form-control" id="fullname" required="" placeholder="John Doe">
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label>Email Address</label>
                             <div class="input-group"><span class="input-group-text">
@@ -56,38 +63,19 @@ require_once '../../include/page-head.php';
                         </div>
                         <div class="form-group">
                             <label>PIN Code</label>
-                            <div class="input-group"><span class="input-group-text">
-                                <i class="icon-key"></i></span>
-                                <input type="text" class="form-control" id="pin-code" required="" placeholder="*********">
-                                <div class="show-hide">
-                                    <span class="show"></span>
-                                </div>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="icon-key"></i></span>
+                                <input type="text" class="form-control" id="pin-code" required="" placeholder="1234">
+                                <span class="input-group-text fa fa-info" data-bs-toggle="tooltip" data-bs-placement="top" title="PIN Code adds another security layer to your account"></span>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="checkbox">
-                                <input id="checkbox1" type="checkbox">
-                                <label for="checkbox1">Remember password</label>
-                            </div><a class="link" href="forget-password.html">Forgot password?</a>
-                        </div>
-                        <div class="form-group">
-                            <button type="button" class="btn btn-primary btn-block" id="login">Sign in</button>
+                        <div class="form-group d-flex justify-content-center">
+                            <button type="button" class="btn btn-primary btn-block" id="register">Register</button>
                         </div>
                         <div class="login-social-title">
                             <h5>-</h5>
                         </div>
-<!--                        <div class="login-social-title">-->
-<!--                            <h5>Sign in with</h5>-->
-<!--                        </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <ul class="login-social">-->
-<!--                                <li><a href="https://www.linkedin.com/login" target="_blank"><i data-feather="linkedin"></i></a></li>-->
-<!--                                <li><a href="https://www.linkedin.com/login" target="_blank"><i data-feather="twitter"></i></a></li>-->
-<!--                                <li><a href="https://www.linkedin.com/login" target="_blank"><i data-feather="facebook"></i></a></li>-->
-<!--                                <li><a href="https://www.instagram.com/login" target="_blank"><i data-feather="instagram">                  </i></a></li>-->
-<!--                            </ul>-->
-<!--                        </div>-->
-                        <p>Don't have account?<a class="ms-2" href="../register/index.php">Create Account</a></p>
+                        <p>Already have account?<a class="ms-2" href="../login/index.php">Login</a></p>
                     </div>
                 </div>
             </div>
@@ -97,6 +85,7 @@ require_once '../../include/page-head.php';
 <?php
 require_once '../../include/page-footer.php';
 ?>
+<script src="../../assets/js/tooltip-init.js"></script>
 <script src="./js/init.js" type="module"></script>
 </body>
 </html>

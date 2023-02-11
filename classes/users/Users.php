@@ -1,5 +1,8 @@
 <?php
 
+require_once $_SERVER['DOCUMENT_ROOT'].'/classes//helpers/Encryption.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/classes/helpers/Generators.php';
+
 class Users
 {
     function __construct() {}
@@ -36,6 +39,8 @@ class Users
     public function create_new_user(array $_newUserData): array
     {
         global $conn;
+        $Encryption = new Encryption();
+        $Generators = new Generators();
 
         $res = array(
             'dataInserted' => false,
@@ -43,18 +48,36 @@ class Users
         );
 
         // generate new row id
-        $new_key = $this->gen_new_primary_key();
+        $userId = $this->gen_new_primary_key();
 
         $fullname = $_newUserData['fullname'];
         $email = $_newUserData['email'];
         $hashedPassword = $_newUserData['hashedPassword'];
         $pinCode = $_newUserData['pinCode'];
 
-        $query = "INSERT INTO users (id, fullname, email, password, pin_code) VALUES ($new_key, '$fullname', '$email', '$hashedPassword', '$pinCode')";
+        $query = "INSERT INTO users (id, fullname, email, password, pin_code) VALUES ($userId, '$fullname', '$email', '$hashedPassword', '$pinCode')";
         $result = mysqli_query($conn, $query);
 
         if (isset($result) && $result === true) {
-            $res['dataInserted'] = true;
+            // generate new row id
+            $new_key = $Generators->gen_table_primary_key('users_keys');
+
+            // generate random key and iv
+            $encryptionKeys = $Encryption->gen_random_encryption_keys();
+            $key = $encryptionKeys['key'];
+            $iv = $encryptionKeys['iv'];
+
+            // insert key and iv into users_keys table
+            $query = "INSERT INTO users_keys (id, user_id, secret_key, secret_iv) VALUES ($new_key, $userId, '$key', '$iv')";
+            $result = mysqli_query($conn, $query);
+
+            if (isset($result) && $result === true) {
+                $res['dataInserted'] = true;
+            }
+            else {
+                $res['dataInserted'] = false;
+                $res['errors'][] = 'An error occurred while saving encryption keys';
+            }
         }
         else {
             $res['dataInserted'] = false;

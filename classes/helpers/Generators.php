@@ -18,9 +18,13 @@ class Generators
         $query = "SELECT MAX(id) + 1 AS new_primary_key FROM $_tableName";
         $stmt = mysqli_query($conn, $query);
         $results = $stmt->fetch_assoc();
-        echo '<pre>';
-        print_r($results);
-        echo '</pre>';
-        return 1;
+
+        // if found new primary key
+        if ($stmt->num_rows && !empty($results['new_primary_key'])) {
+            return $results['new_primary_key'];
+        }
+        else {
+            return 0;
+        }
     }
 }

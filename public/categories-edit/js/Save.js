@@ -32,8 +32,6 @@ class Save {
         }
         const response = await RequestPost.send('./php/file.php', data, 'saveEditedCategory')
 
-        console.log(response)
-
         if (response['dateUpdated']) {
             Swal.fire({
                 icon: 'success',

@@ -24,6 +24,8 @@ class Modal_DeleteCategory {
         const categoryId = new URL(location.href).searchParams.get('id')
 
         const response = await RequestPost.send('./php/file.php', data, 'performCategoryDelete')
+
+        console.log(response)
     }
 }
 

@@ -1,11 +1,12 @@
 <?php
 
-if (isset($_POST['model']) && $_POST['model'] === 'saveEditedCategory') {
-    require_once '../../../classes/authentication/Session.php';
-    require_once '../../../classes/categories/Categories.php';
-    $Session = new Session();
-    $Categories = new Categories();
+require_once '../../../classes/authentication/Session.php';
+require_once '../../../classes/categories/Categories.php';
+require_once '../../../settings/ERROR_CODES.php';
+$Session = new Session();
+$Categories = new Categories();
 
+if (isset($_POST['model']) && $_POST['model'] === 'saveEditedCategory') {
     $session_userId = $Session->getSessionUserId();
 
     $validId = false;
@@ -59,6 +60,63 @@ if (isset($_POST['model']) && $_POST['model'] === 'saveEditedCategory') {
     else {
         $res['dateUpdated'] = false;
         $res['errors'] = array('One or more fields are invalid');
+    }
+
+
+    echo json_encode($res);
+}
+else if (isset($_POST['model']) && $_POST['model'] === 'performCategoryDelete') {
+    $session_userId = $Session->getSessionUserId();
+
+    $validCategoryId = false;
+
+    $res = array(
+        'dataDeleted' => false,
+        'errors' => array()
+    );
+
+    // check category id
+    if (isset($_POST['categoryId']) && strlen($_POST['categoryId'])) {
+        $categoryId = $_POST['categoryId'];
+
+        // check if category exist
+        $categoryData = $Categories->get_category_info($categoryId);
+        if ($categoryData['dataFound']) {
+            // check if category belongs to user
+            if ($categoryData['data']['user_id'] == $session_userId) {
+                $validCategoryId = true;
+            }
+            else {
+                $res['errors'][] = array(
+                    'error' => $ERROR_CODES['CATEGORIES']['DELETE']['VALIDATION']['DOESNT_BELONG_TO_USER']['NAME'],
+                    'errorCode' => $ERROR_CODES['CATEGORIES']['DELETE']['VALIDATION']['DOESNT_BELONG_TO_USER']['CODE'],
+                );
+            }
+        }
+        else {
+            $res['errors'][] = array(
+                'error' => $ERROR_CODES['CATEGORIES']['DELETE']['VALIDATION']['NOT_FOUND']['NAME'],
+                'errorCode' => $ERROR_CODES['CATEGORIES']['DELETE']['VALIDATION']['NOT_FOUND']['CODE'],
+            );
+        }
+    }
+    else {
+        $res['errors'][] = array(
+            'error' => $ERROR_CODES['CATEGORIES']['DELETE']['VALIDATION']['IDENTIFIER_NOT_FOUND']['NAME'],
+            'errorCode' => $ERROR_CODES['CATEGORIES']['DELETE']['VALIDATION']['IDENTIFIER_NOT_FOUND']['CODE'],
+        );
+    }
+
+
+    // check if all parameters are valid
+    if ($validCategoryId) {
+        // delete category
+        $result = $Categories->delete_category(trim($_POST['categoryId']));
+
+        if ($result['dataDeleted']) {
+            $res['dataDeleted'] = true;
+            $res['errors'] = $result['errors'];
+        }
     }
 
 

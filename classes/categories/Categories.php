@@ -114,6 +114,36 @@ class Categories
         return $res;
     }
 
+    public function delete_category(string|int $_categoryId): array
+    {
+        global $conn;
+        $res = array(
+            'dataDeleted' => false,
+            'errors' => array()
+        );
+
+        $_categoryId = strip_tags(htmlspecialchars(mysqli_real_escape_string($conn, $_categoryId)));
+
+        $query = "DELETE FROM categories WHERE id = ?";
+        $stmt = mysqli_prepare($conn, $query);
+        mysqli_stmt_bind_param($stmt, "i", $_categoryId);
+        mysqli_stmt_execute($stmt);
+
+        if (mysqli_stmt_affected_rows($stmt) > 0) {
+            $res['dataDeleted'] = true;
+        } else {
+            // echo "Insert query failed: " . mysqli_stmt_error($stmt);
+
+            $res['errors'][] = array(
+                'error' => $ERROR_CODES['CATEGORIES']['DELETE']['QUERY_FAILED']['NAME'],
+                'errorCode' => $ERROR_CODES['CATEGORIES']['DELETE']['QUERY_FAILED']['CODE'],
+            );
+        }
+        mysqli_stmt_close($stmt);
+
+        return $res;
+    }
+
     /**
      * generate new primary key for inserting new record into table
      * @return int

@@ -21,6 +21,36 @@ $ERROR_CODES = array(
             ),
         ),
     ),
+    "CATEGORIES" => array(
+        "DELETE" => array(
+            "QUERY_FAILED" => array(
+                "NAME" => "Error deleting category",
+                "CODE" => "CDQ.1001",
+                "CAUSE" => "The insert query failed to execute properly. This could be due to a variety of reasons including incorrect SQL syntax, missing data, or connectivity issues.",
+                "FIX" => "Check the SQL syntax, verify that all required data has been provided, and troubleshoot any connectivity issues."
+            ),
+            "VALIDATION" => array(
+                "DOESNT_BELONG_TO_USER" => array(
+                    "NAME" => "You dont own this category",
+                    "CODE" => "CDVD.1001",
+                    "CAUSE" => "Found out that category id does not belong to user id",
+                    "FIX" => "Make sure that the category id you are trying to check belongs to the user id when trying to delete it"
+                ),
+                "NOT_FOUND" => array(
+                    "NAME" => "Category was not found",
+                    "CODE" => "CDVN.1002",
+                    "CAUSE" => "Found out that category id does not exist",
+                    "FIX" => "Make sure that the category id you are trying to check exists in database when trying to delete it"
+                ),
+                "IDENTIFIER_NOT_FOUND" => array(
+                    "NAME" => "Category identifier was not found",
+                    "CODE" => "CDVI.1003",
+                    "CAUSE" => "Found out that category id identifier does not exist",
+                    "FIX" => "Make sure that the category id is sent to the server when you are trying to delete it"
+                ),
+            ),
+        ),
+    ),
     "PASSWORDS" => array(
         "INSERT" => array(
             "QUERY_FAILED" => array(

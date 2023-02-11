@@ -82,22 +82,29 @@ require_once '../../include/page-head.php';
                             <div class="card-body">
                                 <div class="theme-form">
                                     <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label" for="category-name">Name <code>*</code></label>
-                                        <div class="col-sm-9">
+                                        <label class="col-sm-4 col-form-label" for="category-name">Name <code>*</code></label>
+                                        <div class="col-sm-8">
                                             <input type="text" class="form-control" id="category-name" value="<?php echo $categoryData['data']['name']; ?>" placeholder="Category name">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label" for="category-description">Description</label>
-                                        <div class="col-sm-9">
+                                        <label class="col-sm-4 col-form-label" for="category-description">Description</label>
+                                        <div class="col-sm-8">
                                             <input type="text" class="form-control" id="category-description" value="<?php echo $categoryData['data']['description']; ?>" placeholder="Category description">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label" for="category-color">Color <code>*</code></label>
-                                        <div class="col-sm-9">
+                                        <label class="col-sm-4 col-form-label" for="category-color">Color <code>*</code></label>
+                                        <div class="col-sm-8">
                                             <input type="color" class="form-control form-control-color" id="category-color" value="<?php echo $categoryData['data']['color']; ?>" value="#24695c">
                                         </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-4 col-form-label" for="category-color">Passwords In Category</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="category-passwords-count" value="<?php echo $categoryData['data']['password_count']; ?>" placeholder="<?php echo $categoryData['data']['password_count']; ?>" disabled readonly>
+                                        </div>
+                                        <small>Number of passwords in this category</small>
                                     </div>
                                 </div>
                             </div>
@@ -137,6 +144,7 @@ require_once '../../include/page-head.php';
             </div>
             <div class="modal-body">
                 <p>Do you really want to delete this category ?</p>
+                <p>Currently you have <span class="font-weight-bold" id="passwords-count">0</span> passwords in this category</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" id="confirm-delete">Yes, Delete!</button>

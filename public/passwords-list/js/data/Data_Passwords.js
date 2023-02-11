@@ -2,7 +2,7 @@
 import RequestGet from '/javascript/requests/RequestGet.js';
 
 class Data_Passwords {
-    #categories = []
+    #passwords = []
 
     constructor() {}
 
@@ -12,11 +12,10 @@ class Data_Passwords {
         // successful request
         if (response['dataFound']) {
             // store categories
-            this.#categories = response['data']
+            this.#passwords = response['data']
         }
-        else {
 
-        }
+        return response
     }
 
     /**
@@ -24,7 +23,7 @@ class Data_Passwords {
      * @return {array}
      */
     dataGet() {
-        return this.#categories;
+        return this.#passwords;
     }
 }
 

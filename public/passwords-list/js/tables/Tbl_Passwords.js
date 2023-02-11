@@ -1,4 +1,6 @@
 
+import CopyToClipboard from '/javascript/helpers/CopyToClipboard.js';
+
 class Tbl_Passwords {
     constructor() {
         this.tableId = 'passwords-table'
@@ -59,6 +61,10 @@ class Tbl_Passwords {
         // username cell
         const cell_username = document.createElement('td')
         cell_username.innerText = _passwordInfo['username']
+        cell_username.style.cursor = 'pointer'
+        cell_username.addEventListener('click', () => {
+            new CopyToClipboard(_passwordInfo['username'])
+        })
         tr.appendChild(cell_username)
 
         // password cell
@@ -69,8 +75,16 @@ class Tbl_Passwords {
         input.setAttribute('type', 'password')
         input.setAttribute('disabled', 'disabled')
         input.classList.add('form-control', 'password')
+        input.style.cursor = 'pointer'
         input.value = _passwordInfo['password']
-        div.appendChild(input)
+
+        // wrap input with parent because we cannot add click event to disabled input
+        const inputParent = document.createElement('div')
+        inputParent.addEventListener('click', () => {
+            new CopyToClipboard(_passwordInfo['password'])
+        })
+        inputParent.append(input)
+        div.appendChild(inputParent)
         // --------------------------
         const icon = document.createElement('span')
         icon.classList.add('fa', 'fa-fw', 'fa-eye', 'toggle-password-visibility-icon', 'toggle-password')
@@ -87,6 +101,11 @@ class Tbl_Passwords {
         const cell_website = document.createElement('td')
         cell_website.innerText = _passwordInfo['website']
         tr.appendChild(cell_website)
+
+        // description cell
+        const cell_description = document.createElement('td')
+        cell_description.innerText = _passwordInfo['description']
+        tr.appendChild(cell_description)
 
         // options cell
         const cell_options = document.createElement('td')

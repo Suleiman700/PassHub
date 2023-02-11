@@ -11,13 +11,11 @@ import buttonSubmit from './buttons/button-submit.js';
 import ButtonCancel from './buttons/button-cancel.js';
 
 import RequestPost from '/javascript/requests/RequestPost.js';
-import inputPasswordDescription from "./inputs/input-password-description";
 
 class Save {
     constructor() {}
 
     async performSave() {
-        console.log('here')
         // disable buttons
         buttonSubmit.enabled(false)
         ButtonCancel.enabled(false)
@@ -28,11 +26,11 @@ class Save {
         inputs.forEach(input => input.enabled(false))
 
         const data = {
-            passwordUsername: inputPasswordUsername.valueGet(),
-            passwordPassword: inputPasswordPassword.valueGet(),
-            passwordWebsite: inputPasswordWebsite.valueGet(),
-            passwordDescription: inputPasswordDescription.valueGet(),
-            passwordNote: inputPasswordNote.valueGet()
+            username: inputPasswordUsername.valueGet(),
+            password: inputPasswordPassword.valueGet(),
+            website: inputPasswordWebsite.valueGet(),
+            description: inputPasswordDescription.valueGet(),
+            note: inputPasswordNote.valueGet()
         }
 
         const response = await RequestPost.send('./php/file.php', data, 'addNewPassword')
@@ -53,7 +51,12 @@ class Save {
                 title: 'Ops...',
                 html:
                     response['errors'].map(error => {
-                        return `<h6>${error}</h6>`;
+                        return `
+                            <div>
+                                <h6>${error['error']}</h6>
+                                <h6>Error Code: ${error['errorCode']}</h6>
+                            </div>
+                        `;
                     }).join('')
             })
         }

@@ -6,18 +6,34 @@ import Tbl_Passwords from './tables/Tbl_Passwords.js';
 
 async function prepareCategoriesTable() {
     // get user categories
-    await Data_Passwords.fetchPasswords()
+    const response = await Data_Passwords.fetchPasswords()
 
-    // get fetched categories
-    const fetchedPasswords = Data_Passwords.dataGet()
 
     // check if categories found
-    if (fetchedPasswords.length) {
+    if (response['dataFound']) {
+        // get fetched categories
+        const fetchedPasswords = Data_Passwords.dataGet()
+
         for (const fetchedPassword of fetchedPasswords) {
             Tbl_Passwords.rowAdd(fetchedPassword)
         }
     } else {
         Tbl_Passwords.showNoResultsRow()
+
+        // show error
+        Swal.fire({
+            icon: 'error',
+            title: 'Ops...',
+            html:
+                response['errors'].map(error => {
+                    return `
+                            <div>
+                                <h6>${error['error']}</h6>
+                                <h6>Error Code: ${error['errorCode']}</h6>
+                            </div>
+                        `;
+                }).join('')
+        })
     }
 }
 

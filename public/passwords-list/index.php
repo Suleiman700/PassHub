@@ -67,6 +67,7 @@ require_once '../../include/page-head.php';
                                             <th scope="col">Password</th>
                                             <th scope="col">Website</th>
                                             <th scope="col">Description</th>
+                                            <th scope="col">Option</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -96,6 +97,9 @@ require_once '../../include/page-head.php';
     </div>
 </div>
 <?php require_once '../../include/page-footer.php'; ?>
+<script src="../../assets/js/notify/bootstrap-notify.min.js"></script>
+<script src="../../assets/js/notify/notify-script.js"></script>
+<script src="../../assets/js/tooltip-init.js"></script>
 <script src="./js/init.js" type="module"></script>
 </body>
 </html>

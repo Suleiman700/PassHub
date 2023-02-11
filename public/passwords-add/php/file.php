@@ -2,8 +2,10 @@
 
 require_once '../../../classes/authentication/Session.php';
 require_once '../../../classes/categories/Categories.php';
+require_once '../../../classes/passwords/Passwords.php';
 $Session = new Session();
 $Categories = new Categories();
+$Passwords = new Passwords();
 
 // check if logged
 $session_isLogged = $Session->isLogged();
@@ -12,35 +14,35 @@ if (isset($_POST['model']) && $_POST['model'] === 'addNewPassword' && $session_i
     // get user id from session
     $session_userId = $Session->getSessionUserId();
 
-    $validId = false;
-    $validName = false;
-    $validDescription = false;
-    $validColor = false;
+    $validUsername = false;
+    $validPassword = false;
 
     $res = array(
         'dataInserted' => true,
         'errors' => array()
     );
 
-    // check category name
-    if (isset($_POST['categoryName']) && !empty($_POST['categoryName'])) {
-        $validName = true;
+    // check username
+    if (isset($_POST['username']) && !empty($_POST['username'])) {
+        $validUsername = true;
     }
 
-    // check category color
-    if (isset($_POST['categoryColor']) && !empty($_POST['categoryColor'])) {
-        $validColor = true;
+    // check password
+    if (isset($_POST['password']) && !empty($_POST['password'])) {
+        $validPassword = true;
     }
 
     // check if all parameters are valid
-    if ($validName && $validColor) {
+    if ($validUsername && $validPassword) {
         $data = array(
-            'name' => trim($_POST['categoryName']),
-            'description' => trim($_POST['categoryDescription']??''),
-            'color' => trim($_POST['categoryColor']),
+            'username' => trim($_POST['username']),
+            'password' => trim($_POST['password']),
+            'website' => trim($_POST['website']??''),
+            'description' => trim($_POST['description']??''),
+            'note' => trim($_POST['note']??''),
         );
 
-        $result = $Categories->create_category($session_userId, $data);
+        $result = $Passwords->create_password($session_userId, $data);
         if ($result['dataInserted']) {
             $res['dataInserted'] = true;
         }
@@ -53,7 +55,6 @@ if (isset($_POST['model']) && $_POST['model'] === 'addNewPassword' && $session_i
         $res['dataInserted'] = false;
         $res['errors'] = array('One or more fields are invalid');
     }
-
 
     echo json_encode($res);
 }

@@ -26,7 +26,7 @@ export default class InputManager {
      * @param _option {Boolean}
      */
     enabled(_option) {
-        document.querySelector(`#${this.parentId} input#${this.id}`).disabled = !_option
+        document.querySelector(`#${this.parentId} #${this.id}`).disabled = !_option
     }
 
     /**
@@ -34,7 +34,7 @@ export default class InputManager {
      */
     valueClear() {
         // $: indicates that is it an element
-        const $input = document.querySelector(`#${this.parentId} input#${this.id}`)
+        const $input = document.querySelector(`#${this.parentId} #${this.id}`)
 
         // Set value
         $input.value = ''
@@ -48,7 +48,7 @@ export default class InputManager {
      * @returns {string|undefined}
      */
     valueGet() {
-        const value = document.querySelector(`#${this.parentId} input#${this.id}`).value
+        const value = document.querySelector(`#${this.parentId} #${this.id}`).value
         if (!value.trim().length || !value.length) return undefined
         else return value
     }
@@ -59,7 +59,7 @@ export default class InputManager {
      */
     valueSet(_value) {
         // $: indicates that is it an element
-        const $input = document.querySelector(`#${this.parentId} input#${this.id}`)
+        const $input = document.querySelector(`#${this.parentId} #${this.id}`)
 
         // Set value
         $input.value = _value
@@ -74,10 +74,10 @@ export default class InputManager {
      */
     markError(_option) {
         if (_option) {
-            document.querySelector(`#${this.parentId} input#${this.id}`).classList.add('border-danger')
+            document.querySelector(`#${this.parentId} #${this.id}`).classList.add('border-danger')
         }
         else {
-            document.querySelector(`#${this.parentId} input#${this.id}`).classList.remove('border-danger')
+            document.querySelector(`#${this.parentId} #${this.id}`).classList.remove('border-danger')
         }
     }
 }

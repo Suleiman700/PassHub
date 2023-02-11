@@ -15,7 +15,11 @@ class Categories
             'data' => array()
         );
 
-        $query = "SELECT * FROM categories WHERE user_id = '$_userId'";
+        $query = "SELECT categories.*, COUNT(passwords.id) AS passwords_count
+                    FROM categories
+                    LEFT JOIN passwords ON categories.id = passwords.category_id
+                    WHERE categories.user_id = '$_userId'
+                    GROUP BY categories.id";
         $stmt = mysqli_query($conn, $query);
         $results = $stmt->fetch_all(MYSQLI_ASSOC);
 
@@ -37,7 +41,14 @@ class Categories
             'data' => array()
         );
 
-        $query = "SELECT * FROM categories WHERE id = '$_categoryId'";
+        $_categoryId = strip_tags(htmlspecialchars(mysqli_real_escape_string($conn, $_categoryId)));
+
+//        $query = "SELECT * FROM categories WHERE id = '$_categoryId'";
+        $query = "SELECT categories.*, COUNT(passwords.id) AS password_count
+                    FROM categories
+                    LEFT JOIN passwords ON categories.id = passwords.category_id
+                    WHERE categories.id = '$_categoryId'
+                    GROUP BY categories.id";
         $stmt = mysqli_query($conn, $query);
         $results = $stmt->fetch_assoc();
 

@@ -77,7 +77,6 @@ class Tbl_Passwords {
         input.classList.add('form-control', 'password')
         input.style.cursor = 'pointer'
         input.value = _passwordInfo['password']
-
         // wrap input with parent because we cannot add click event to disabled input
         const inputParent = document.createElement('div')
         inputParent.addEventListener('click', () => {
@@ -96,6 +95,12 @@ class Tbl_Passwords {
         // --------------------------
         cell_password.appendChild(div)
         tr.appendChild(cell_password)
+
+        // category cell
+        const cell_category = document.createElement('td')
+        cell_category.innerText = _passwordInfo['category_name']
+        cell_category.style.color = _passwordInfo['category_color']
+        tr.appendChild(cell_category)
 
         // website cell
         const cell_website = document.createElement('td')

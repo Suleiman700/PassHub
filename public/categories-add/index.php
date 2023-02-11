@@ -35,7 +35,7 @@ require_once '../../include/page-head.php';
                 <div class="page-header">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h3>Edit Category</h3>
+                            <h3>Add Category</h3>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="../dashboard/index.php">Dashboard</a></li>
                                 <li class="breadcrumb-item"><a href="../categories-list/index.php">Categories List</a></li>

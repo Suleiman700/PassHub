@@ -69,7 +69,7 @@ class Tbl_Categories {
 
         // passwords count cell
         const cell_password_count = document.createElement('td')
-        cell_password_count.innerText = 0
+        cell_password_count.innerText = _categoryInfo['passwords_count']
         tr.appendChild(cell_password_count)
 
         // options cell

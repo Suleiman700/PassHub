@@ -65,6 +65,7 @@ require_once '../../include/page-head.php';
                                             <th scope="col">#</th>
                                             <th scope="col">Username</th>
                                             <th scope="col">Password</th>
+                                            <th scope="col">Category</th>
                                             <th scope="col">Website</th>
                                             <th scope="col">Description</th>
                                             <th scope="col">Option</th>

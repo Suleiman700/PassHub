@@ -26,7 +26,7 @@ if (isset($_POST['model']) && $_POST['model'] === 'saveEditedCategory') {
         $categoryData = $Categories->get_category_info($categoryId);
         if ($categoryData['dataFound']) {
             // check if category belongs to user
-            if ($categoryData['data']['id'] == $session_userId) {
+            if ($categoryData['data']['user_id'] == $session_userId) {
                 $validId = true;
             }
         }

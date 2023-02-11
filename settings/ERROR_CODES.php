@@ -29,6 +29,30 @@ $ERROR_CODES = array(
                 "CAUSE" => "The insert query failed to execute properly. This could be due to a variety of reasons including incorrect SQL syntax, missing data, or connectivity issues.",
                 "FIX" => "Check the SQL syntax, verify that all required data has been provided, and troubleshoot any connectivity issues."
             ),
+            "VALIDATION" => array(
+                "FIELDS" => array(
+                    "ONE_OR_MORE_ARE_INVALID" => array(
+                        "NAME" => "One or more fields are invalid",
+                        "CODE" => "PIVFO.1001",
+                        "CAUSE" => "One or more required fields are empty or not set",
+                        "FIX" => "Make sure to check the required fields and check if they are set properly"
+                    ),
+                ),
+                "CATEGORY" => array(
+                    "DOESNT_BELONG_TO_USER" => array(
+                        "NAME" => "You dont own this category",
+                        "CODE" => "PIVCD.1001",
+                        "CAUSE" => "Found out that category id does not belong to user id",
+                        "FIX" => "Make sure that the category id you are trying to check belongs to the user id when trying to create a new password"
+                    ),
+                    "NOT_FOUND" => array(
+                        "NAME" => "Category was not found",
+                        "CODE" => "PIVCN.1002",
+                        "CAUSE" => "Found out that category id does not exist",
+                        "FIX" => "Make sure that the category id you are trying to check exists in database when trying to create a new password"
+                    ),
+                ),
+            ),
         ),
         "GET" => array(
             "NOT_FOUND" => array(

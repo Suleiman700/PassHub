@@ -14,7 +14,8 @@ if (isset($_GET['model']) && $_GET['model'] === 'fetchPasswords') {
     $res = array(
         'dataFound' => false,
         'data' => array(),
-        'errors' => array()
+        'errors' => array(),
+        'displayErrors' => true, // true/false if you want to display errors to the user
     );
 
     // get user id from session
@@ -53,6 +54,7 @@ if (isset($_GET['model']) && $_GET['model'] === 'fetchPasswords') {
         }
         // no passwords found
         else {
+            $res['displayErrors'] = false;
             $res['errors'][] = array(
                 'error' => $ERROR_CODES['PASSWORDS']['GET']['NOT_FOUND']['NAME'],
                 'errorCode' => $ERROR_CODES['PASSWORDS']['GET']['NOT_FOUND']['CODE'],

@@ -1,4 +1,7 @@
 
+// selects
+import selectCategory from './selects/select-category.js';
+
 // inputs
 import inputPasswordUsername from './inputs/input-password-username.js';
 import inputPasswordPassword from './inputs/input-password-password.js';
@@ -16,16 +19,12 @@ class Save {
     constructor() {}
 
     async performSave() {
-        // disable buttons
-        buttonSubmit.enabled(false)
-        ButtonCancel.enabled(false)
-
-        const inputs = [inputPasswordUsername, inputPasswordPassword, inputPasswordWebsite, inputPasswordDescription, inputPasswordNote]
-
-        // disable inputs
-        inputs.forEach(input => input.enabled(false))
+        // disable elements
+        const elements = [selectCategory, inputPasswordUsername, inputPasswordPassword, inputPasswordWebsite, inputPasswordDescription, inputPasswordNote, buttonSubmit, ButtonCancel]
+        elements.forEach(element => element.enabled(false))
 
         const data = {
+            categoryId: selectCategory.get_selected_value(),
             username: inputPasswordUsername.valueGet(),
             password: inputPasswordPassword.valueGet(),
             website: inputPasswordWebsite.valueGet(),
@@ -36,7 +35,8 @@ class Save {
         const response = await RequestPost.send('./php/file.php', data, 'addNewPassword')
 
         if (response['dataInserted']) {
-            // clear fields
+            // clear inputs
+            const inputs = [inputPasswordUsername, inputPasswordPassword, inputPasswordWebsite, inputPasswordDescription, inputPasswordNote]
             inputs.forEach(input => input.valueClear())
 
             Swal.fire({
@@ -61,12 +61,8 @@ class Save {
             })
         }
 
-        // enable buttons
-        buttonSubmit.enabled(true)
-        ButtonCancel.enabled(true)
-
-        // enable inputs
-        inputs.forEach(input => input.enabled(true))
+        // enable elements
+        elements.forEach(element => element.enabled(true))
     }
 }
 

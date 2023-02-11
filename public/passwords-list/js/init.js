@@ -20,20 +20,22 @@ async function prepareCategoriesTable() {
     } else {
         Tbl_Passwords.showNoResultsRow()
 
-        // show error
-        Swal.fire({
-            icon: 'error',
-            title: 'Ops...',
-            html:
-                response['errors'].map(error => {
-                    return `
+        // show error if set to true
+        if (response['showErrors']) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Ops...',
+                html:
+                    response['errors'].map(error => {
+                        return `
                             <div>
                                 <h6>${error['error']}</h6>
                                 <h6>Error Code: ${error['errorCode']}</h6>
                             </div>
                         `;
-                }).join('')
-        })
+                    }).join('')
+            })
+        }
     }
 }
 

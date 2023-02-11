@@ -58,6 +58,13 @@ require_once '../../include/page-head.php';
                             <div class="card-body">
                                 <div class="theme-form">
                                     <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label" for="password-username">Category <code class="text-danger">*</code></label>
+                                        <div class="col-sm-9">
+                                            <select class="form-select" id="password-category"></select>
+                                        </div>
+                                        <small class="text-muted">Categories organizes your passwords.</small>
+                                    </div>
+                                    <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label" for="password-username">Username <code class="text-danger">*</code></label>
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control" id="password-username" value="" placeholder="Username">

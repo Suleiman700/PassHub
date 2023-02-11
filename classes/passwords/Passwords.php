@@ -25,7 +25,10 @@ class Passwords
             'data' => array()
         );
 
-        $query = "SELECT * FROM passwords WHERE user_id = '$_userId'";
+        $query = "SELECT passwords.*, categories.name AS category_name, categories.color AS category_color
+                    FROM passwords
+                    LEFT JOIN categories ON passwords.category_id = categories.id
+                    WHERE passwords.user_id = '$_userId'";
         $stmt = mysqli_query($conn, $query);
         $results = $stmt->fetch_all(MYSQLI_ASSOC);
 
@@ -62,6 +65,7 @@ class Passwords
         $new_key = $Generators->gen_table_primary_key($this->tableName);
 
         // sanitize data
+        $categoryId = strip_tags(htmlspecialchars(mysqli_real_escape_string($conn, $_newPasswordData['categoryId'])));
         $username = strip_tags(htmlspecialchars(mysqli_real_escape_string($conn, $_newPasswordData['username'])));
         $password = strip_tags(htmlspecialchars(mysqli_real_escape_string($conn, $_newPasswordData['password'])));
         $website = strip_tags(htmlspecialchars(mysqli_real_escape_string($conn, $_newPasswordData['website'])));
@@ -77,9 +81,9 @@ class Passwords
             $encryptedPassword = $Encryption->encrypt_string($password, $userKeys['data']['secret_key'], $userKeys['data']['secret_iv']);
 
             // insert record
-            $query = "INSERT INTO `$this->tableName` (id, user_id, username, password, website, description, note) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $query = "INSERT INTO `$this->tableName` (id, user_id, category_id, username, password, website, description, note) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = mysqli_prepare($conn, $query);
-            mysqli_stmt_bind_param($stmt, "iisssss", $new_key, $_userId, $username, $encryptedPassword, $website, $description, $note);
+            mysqli_stmt_bind_param($stmt, "iiisssss", $new_key, $_userId, $categoryId, $username, $encryptedPassword, $website, $description, $note);
             mysqli_stmt_execute($stmt);
 
             if (mysqli_stmt_affected_rows($stmt) > 0) {

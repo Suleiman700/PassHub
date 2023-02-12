@@ -34,42 +34,49 @@ class Search {
         const filterDescription = inputFilterDescription.valueGet()
         const filterNote = inputFilterNote.valueGet()
 
-        const allPasswords = Data_Passwords.dataGet()
-
         // search in all passwords by filters
+        const allPasswords = Data_Passwords.dataGet()
         let filteredPasswords = allPasswords;
+        let filterApplied = false // this is used to show button to clear filters if any filter is applied
 
         if (filterUsername !== undefined) {
+            filterApplied = true
             filteredPasswords = filteredPasswords.filter((password) => {
                 return password['username'].toLowerCase().includes(filterUsername.toLowerCase());
             });
         }
         if (filterCategoryId !== undefined) {
+            filterApplied = true
             filteredPasswords = filteredPasswords.filter((password) => {
                 return password['category_id'] == filterCategoryId;
             });
         }
         if (filterWebsite !== undefined) {
+            filterApplied = true
             filteredPasswords = filteredPasswords.filter((password) => {
                 return password['website'].toLowerCase().includes(filterWebsite.toLowerCase());
             });
         }
         if (filterDescription !== undefined) {
+            filterApplied = true
             filteredPasswords = filteredPasswords.filter((password) => {
                 return password['description'].toLowerCase().includes(filterDescription.toLowerCase());
             });
         }
         if (filterNote !== undefined) {
+            filterApplied = true
             filteredPasswords = filteredPasswords.filter((password) => {
                 return password['note'].toLowerCase().includes(filterNote.toLowerCase());
             });
         }
 
-
         // clear table
         Tbl_Passwords.clearRows()
 
         if (filteredPasswords.length) {
+            // show clear filters button if filter applied
+            if (filterApplied) buttonClearFilters.shown(true)
+
             // add passwords to table
             filteredPasswords.forEach(filteredPassword => {
                 Tbl_Passwords.rowAdd(filteredPassword)
@@ -89,6 +96,9 @@ class Search {
      * @return {void}
      */
     clearFilters() {
+        // hide clear filters button
+        buttonClearFilters.shown(false)
+
         // clear fields
         inputFilterUsername.valueClear()
         selectFilterCategory.deselect()

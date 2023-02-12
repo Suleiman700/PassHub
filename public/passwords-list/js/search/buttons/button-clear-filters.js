@@ -10,4 +10,6 @@ const buttonClearFilters = new ButtonManager('search-form', 'button-clear-filter
 
 buttonClearFilters.onClick()
 
+buttonClearFilters.shown(false)
+
 export default buttonClearFilters

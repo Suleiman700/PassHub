@@ -103,8 +103,8 @@ require_once '../../include/page-head.php';
                                             </div>
                                         </div>
                                     </div>
-                                    <button class="btn btn-primary" id="button-search-filters">Search</button>
-                                    <button class="btn btn-secondary" id="button-clear-filters">Clear Filters</button>
+                                    <button class="btn btn-primary" id="button-search-filters"><i class="fa fa-search"></i> Search</button>
+                                    <button class="btn btn-secondary" id="button-clear-filters"><i class="fa fa-times"></i> Clear Filters</button>
                                 </div>
                             </div>
                         </div>

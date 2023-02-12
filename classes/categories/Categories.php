@@ -43,7 +43,6 @@ class Categories
 
         $_categoryId = strip_tags(htmlspecialchars(mysqli_real_escape_string($conn, $_categoryId)));
 
-//        $query = "SELECT * FROM categories WHERE id = '$_categoryId'";
         $query = "SELECT categories.*, COUNT(passwords.id) AS password_count
                     FROM categories
                     LEFT JOIN passwords ON categories.id = passwords.category_id
@@ -114,6 +113,11 @@ class Categories
         return $res;
     }
 
+    /**
+     * delete user category
+     * @param string|int $_categoryId
+     * @return array
+     */
     public function delete_category(string|int $_categoryId): array
     {
         global $conn;

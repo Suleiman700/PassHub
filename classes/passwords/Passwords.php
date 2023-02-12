@@ -11,6 +11,52 @@ class Passwords
 
     function __construct() {}
 
+    public function get_password_info(string|int $_passwordId, string|int $_userId): array
+    {
+        global $conn;
+        global $ERROR_CODES;
+        $Encryption = new Encryption();
+
+        $res = array(
+            'dataFound' => false,
+            'data' => array()
+        );
+
+        $_passwordId = strip_tags(htmlspecialchars(mysqli_real_escape_string($conn, $_passwordId)));
+
+        $query = "SELECT * FROM $this->tableName WHERE id = '$_passwordId' and user_id = '$_userId'";
+        $stmt = mysqli_query($conn, $query);
+        $results = $stmt->fetch_assoc();
+
+        // check if data found
+        if ($stmt->num_rows) {
+            $res['dataFound'] = true;
+            $res['data'] = $results;
+
+            // get user keys to decrypt password
+            $userKeys = $Encryption->get_user_secrets($_userId);
+            if ($userKeys['dataFound']) {
+                $secretKey = $userKeys['data']['secret_key'];
+                $secretIv = $userKeys['data']['secret_iv'];
+
+                // decrypt passwords
+                $decryptedPassword = $Encryption->decrypt_string($res['data']['password'], $secretKey, $secretIv);
+
+                $res['dataFound'] = true;
+                $res['data']['password'] = $decryptedPassword;
+            }
+            else {
+                $res['dataFound'] = false;
+                $res['errors'][] = array(
+                    'error' => $ERROR_CODES['DECRYPTION']['USER_SECRETS']['NOT_FOUND']['NAME'],
+                    'errorCode' => $ERROR_CODES['DECRYPTION']['USER_SECRETS']['NOT_FOUND']['CODE'],
+                );
+            }
+        }
+
+        return $res;
+    }
+
     /**
      * get user data by email address
      * @param string $_emailAddress

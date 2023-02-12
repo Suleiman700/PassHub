@@ -124,6 +124,7 @@ require_once '../../include/page-head.php';
                             <div class="card-footer">
                                 <button class="btn btn-primary" id="submit"><i class="fa fa-save"></i> Save</button>
                                 <button class="btn btn-secondary" id="cancel"><i class="fa fa-times"></i> Cancel</button>
+                                <button class="btn btn-danger" id="delete"><i class="fa fa-trash"></i> Delete</button>
                             </div>
                         </div>
                     </div>
@@ -147,6 +148,25 @@ require_once '../../include/page-head.php';
         </footer>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal_password_delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content text-center">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete Password</h5>
+            </div>
+            <div class="modal-body">
+                <p>Do you really want to delete this password ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="confirm-delete">Yes, Delete!</button>
+                <button type="button" class="btn btn-secondary" id="cancel-delete" data-bs-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?php require_once '../../include/page-footer.php'; ?>
 <script src="./js/init.js" type="module"></script>
 </body>

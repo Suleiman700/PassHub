@@ -24,6 +24,7 @@ class Save {
         elements.forEach(element => element.enabled(false))
 
         const data = {
+            passwordIdentifier: new URL(location.href).searchParams.get('id'),
             categoryId: selectCategory.get_selected_value(),
             username: inputPasswordUsername.valueGet(),
             password: inputPasswordPassword.valueGet(),
@@ -32,17 +33,13 @@ class Save {
             note: inputPasswordNote.valueGet()
         }
 
-        const response = await RequestPost.send('./php/file.php', data, 'addNewPassword')
+        const response = await RequestPost.send('./php/file.php', data, 'updatePassword')
 
-        if (response['dataInserted']) {
-            // clear inputs
-            const inputs = [inputPasswordUsername, inputPasswordPassword, inputPasswordWebsite, inputPasswordDescription, inputPasswordNote]
-            inputs.forEach(input => input.valueClear())
-
+        if (response['dataUpdated']) {
             Swal.fire({
                 icon: 'success',
                 title: 'Yay!',
-                html: 'Password has been saved successfully'
+                html: 'Password has been updated successfully'
             })
         }
         else {

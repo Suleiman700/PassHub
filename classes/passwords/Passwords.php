@@ -153,4 +153,119 @@ class Passwords
 
         return $res;
     }
+
+    public function update_password(string|int $_passwordId, string|int $_userId, array $_newPasswordData): array
+    {
+        global $conn;
+        global $ERROR_CODES;
+        $Generators = new Generators();
+        $Encryption = new Encryption();
+        $Users = new Users();
+
+        $res = array(
+            'dataUpdated' => false,
+            'errors' => array()
+        );
+
+        // sanitize data
+        $categoryId = strip_tags(htmlspecialchars(mysqli_real_escape_string($conn, $_newPasswordData['categoryId'])));
+        $username = strip_tags(htmlspecialchars(mysqli_real_escape_string($conn, $_newPasswordData['username'])));
+        $password = strip_tags(htmlspecialchars(mysqli_real_escape_string($conn, $_newPasswordData['password'])));
+        $website = strip_tags(htmlspecialchars(mysqli_real_escape_string($conn, $_newPasswordData['website'])));
+        $description = strip_tags(htmlspecialchars(mysqli_real_escape_string($conn, $_newPasswordData['description'])));
+        $note = strip_tags(htmlspecialchars(mysqli_real_escape_string($conn, $_newPasswordData['note'])));
+
+        // get users keys to encrypt password
+        $userKeys = $Encryption->get_user_secrets($_userId);
+
+        // user keys found
+        if ($userKeys['dataFound']) {
+            // encrypt password
+            $encryptedPassword = $Encryption->encrypt_string($password, $userKeys['data']['secret_key'], $userKeys['data']['secret_iv']);
+
+            try {
+                // update row
+                $query = "UPDATE $this->tableName SET category_id=?, username=?, password=?, website=?, description=?, note=? WHERE id=? AND user_id=?";
+                $stmt = mysqli_prepare($conn, $query);
+                mysqli_stmt_bind_param($stmt, "isssssii", $categoryId, $username, $encryptedPassword, $website, $description, $note, $_passwordId, $_userId);
+                mysqli_stmt_execute($stmt);
+
+                if (mysqli_stmt_errno($stmt) == 0) {
+                    $res['dataUpdated'] = true;
+                    // if (mysqli_stmt_affected_rows($stmt) > 0) {
+                    //     $res['dataUpdated'] = true;
+                    // } else {
+                    //     $res['dataUpdated'] = false;
+                    // }
+                } else {
+                    $res['errors'][] = array(
+                        'error' => $ERROR_CODES['PASSWORDS']['UPDATE']['QUERY_FAILED']['NAME'],
+                        'errorCode' => $ERROR_CODES['PASSWORDS']['UPDATE']['QUERY_FAILED']['CODE'],
+                    );
+                }
+                mysqli_stmt_close($stmt);
+            }
+            catch (Exception $e) {
+                $res['errors'][] = array(
+                    'error' => $ERROR_CODES['PASSWORDS']['UPDATE']['QUERY_FAILED_TRY_CATCH']['NAME'],
+                    'errorCode' => $ERROR_CODES['PASSWORDS']['UPDATE']['QUERY_FAILED_TRY_CATCH']['CODE'],
+                );
+            }
+        }
+        else {
+            $res['errors'][] = array(
+                'error' => $ERROR_CODES['ENCRYPTION']['USER_SECRETS']['NOT_FOUND']['NAME'],
+                'errorCode' => $ERROR_CODES['ENCRYPTION']['USER_SECRETS']['NOT_FOUND']['CODE'],
+            );
+        }
+
+        return $res;
+    }
+
+    public function delete_password(string|int $_passwordId): array
+    {
+        global $conn;
+        global $ERROR_CODES;
+
+        $res = array(
+            'dataDeleted' => false,
+            'errors' => array()
+        );
+
+
+        try {
+            $_passwordId = strip_tags(htmlspecialchars(mysqli_real_escape_string($conn, $_passwordId)));
+
+            // update row
+            $query = "DELETE FROM $this->tableName WHERE id=?";
+            $stmt = mysqli_prepare($conn, $query);
+            mysqli_stmt_bind_param($stmt, "i", $_passwordId);
+            mysqli_stmt_execute($stmt);
+
+            if (mysqli_stmt_errno($stmt) == 0) {
+                 if (mysqli_stmt_affected_rows($stmt) > 0) {
+                     $res['dataDeleted'] = true;
+                 } else {
+                     $res['errors'][] = array(
+                         'error' => $ERROR_CODES['PASSWORDS']['DELETE']['QUERY']['QUERY_FAILED']['NAME'],
+                         'errorCode' => $ERROR_CODES['PASSWORDS']['DELETE']['QUERY']['QUERY_FAILED']['CODE'],
+                     );
+                 }
+            } else {
+                $res['errors'][] = array(
+                    'error' => $ERROR_CODES['PASSWORDS']['DELETE']['QUERY']['NO_AFFECTED_ROWS']['NAME'],
+                    'errorCode' => $ERROR_CODES['PASSWORDS']['DELETE']['QUERY']['NO_AFFECTED_ROWS']['CODE'],
+                );
+            }
+            mysqli_stmt_close($stmt);
+        }
+        catch (Exception $e) {
+            $res['errors'][] = array(
+                'error' => $ERROR_CODES['PASSWORDS']['DELETE']['QUERY']['ERROR_PERFORMING_QUERY']['NAME'],
+                'errorCode' => $ERROR_CODES['PASSWORDS']['DELETE']['QUERY']['ERROR_PERFORMING_QUERY']['CODE'],
+            );
+        }
+
+        return $res;
+    }
 }

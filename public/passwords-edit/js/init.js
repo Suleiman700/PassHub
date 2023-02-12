@@ -11,6 +11,7 @@ import selectCategory from './selects/select-category.js'
 // buttons
 import buttonSubmit from './buttons/button-submit.js';
 import buttonCancel from './buttons/button-cancel.js';
+import buttonDelete from './buttons/button-delete.js';
 
 // data
 import Data_Categories from './data/Data_Categories.js';

@@ -61,6 +61,24 @@ class Categories
     }
 
     /**
+     * count user categories
+     * @param string|int $_userId
+     * @return int
+     */
+    public function count_user_categories(string|int $_userId): int
+    {
+        global $conn;
+
+        $_userId = strip_tags(htmlspecialchars(mysqli_real_escape_string($conn, $_userId)));
+
+        $query = "SELECT COUNT(*) AS count FROM categories WHERE user_id = '$_userId'";
+        $stmt = mysqli_query($conn, $query);
+        $results = $stmt->fetch_assoc();
+
+        return $results['count'];
+    }
+
+    /**
      * update user category
      * @param string|int $_categoryId example: 1
      * @param string|int $_categoryUserId example: 1

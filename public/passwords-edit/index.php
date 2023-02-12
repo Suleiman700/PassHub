@@ -67,7 +67,7 @@ require_once '../../include/page-head.php';
                             </ol>
                         </div>
                         <div class="col-sm-6">
-                            <div class="bookmark">
+                            <div class="bookmark pull-right">
                                 <a class="btn btn-success" href="../passwords-list/index.php"><i class="fa fa-list"></i> Passwords List</a>
                             </div>
                         </div>

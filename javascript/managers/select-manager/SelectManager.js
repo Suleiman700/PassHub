@@ -100,10 +100,12 @@ export default class SelectManager {
 
     /**
      * Get selected option's value
-     * @return {string}
+     * @return {string|undefined}
      */
     get_selected_value() {
-        return document.querySelector(`#${this.parentId} select#${this.id}`).value
+        const selectedValue = document.querySelector(`#${this.parentId} select#${this.id}`).value
+        if (selectedValue.length) return selectedValue
+        else return undefined
     }
 
     /**

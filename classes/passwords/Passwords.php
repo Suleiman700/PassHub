@@ -58,6 +58,24 @@ class Passwords
     }
 
     /**
+     * count user passwords
+     * @param string|int $_userId
+     * @return int
+     */
+    public function count_user_passwords(string|int $_userId): int
+    {
+        global $conn;
+
+        $_userId = strip_tags(htmlspecialchars(mysqli_real_escape_string($conn, $_userId)));
+
+        $query = "SELECT COUNT(*) AS count FROM $this->tableName WHERE user_id = '$_userId'";
+        $stmt = mysqli_query($conn, $query);
+        $results = $stmt->fetch_assoc();
+
+        return $results['count'];
+    }
+
+    /**
      * get user data by email address
      * @param string $_emailAddress
      * @return array

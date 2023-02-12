@@ -12,7 +12,7 @@ class Tbl_Passwords {
      */
     showNoResultsRow() {
         // clear table rows
-        this.#clearRows()
+        this.clearRows()
 
         // show row
         const tableTbody = document.querySelector(`#${this.tableId} tbody`)
@@ -108,7 +108,6 @@ class Tbl_Passwords {
         tr.appendChild(cell_website)
 
         // description cell
-        console.log(_passwordInfo)
         const cell_description = document.createElement('td')
         cell_description.innerText = _passwordInfo['description']
         tr.appendChild(cell_description)
@@ -132,7 +131,7 @@ class Tbl_Passwords {
      * clear table rows
      * @return {void}
      */
-    #clearRows() {
+    clearRows() {
         document.querySelector(`#${this.tableId} tbody`).innerHTML = ''
     }
 

@@ -1,5 +1,13 @@
 <?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 require_once '../../classes/authentication/Session.php';
+require_once '../../classes/categories/Categories.php';
+require_once '../../classes/passwords/Passwords.php';
+
 
 // redirect non logged-in users to login page
 $Session = new Session();
@@ -9,11 +17,16 @@ if (!$Session->isLogged()) {
 }
 
 // get user data from session
+$session_userId = $Session->getSessionUserId();
 $session_username = $Session->getSessionUsername();
 $session_userEmail = $Session->getSessionUserEmail();
 $session = $Session->getSessionUserEmail();
 
-
+// get some statistics
+$Categories = new Categories();
+$Passwords = new Passwords();
+$count_categories = $Categories->count_user_categories($session_userId);
+$count_passwords = $Passwords->count_user_passwords($session_userId);
 ?>
 
 <div class="page-main-header">

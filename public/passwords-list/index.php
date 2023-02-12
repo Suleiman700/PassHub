@@ -41,7 +41,7 @@ require_once '../../include/page-head.php';
                         </div>
                         <div class="col-sm-6">
                             <!-- Bookmark Start-->
-                            <div class="bookmark">
+                            <div class="bookmark pull-right">
                                 <ul>
                                     <li>
                                         <a class="btn btn-success text-white" href="../passwords-add/index.php"><i class="fa fa-plus"></i> New Password</a>
@@ -58,8 +58,64 @@ require_once '../../include/page-head.php';
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card">
+                            <div class="card-header pb-0">
+                                <h5>Search Passwords</h5>
+                                <span>Use filters below to search passwords</span>
+                            </div>
+                            <div class="card-body">
+                                <div id="search-form">
+                                    <div class="row g-3">
+                                        <div class="col-md-4 mb-3">
+                                            <label class="form-label" for="filter-username">Username</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fa fa-link"></i></span>
+                                                <input type="text" class="form-control" id="filter-username">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label class="form-label" for="filter-category">Category</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fa fa-eye"></i></span>
+                                                <select class="form-select" id="filter-category"></select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label class="form-label" for="filter-website">Website</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fa fa-link"></i></span>
+                                                <input type="text" class="form-control" id="filter-website">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row g-3">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label" for="filter-description">Description</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fa fa-font"></i></span>
+                                                <input type="text" class="form-control" id="filter-description">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label" for="filter-note">Note</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fa fa-sticky-note"></i></span>
+                                                <input type="text" class="form-control" id="filter-note">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary" id="button-search-filters">Search</button>
+                                    <button class="btn btn-secondary" id="button-clear-filters">Clear Filters</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Individual column searching (text inputs) Ends-->
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
                             <div class="table-responsive">
-                                <table class="table table-border-vertical table-hover text-center" id="passwords-table">
+                                <table class="table table-border-vertical table-hover text-center" id="passwords-table" style="white-space: nowrap;">
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>

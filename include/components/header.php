@@ -50,6 +50,7 @@ $count_passwords = $Passwords->count_user_passwords($session_userId);
         <div class="nav-right col pull-right right-menu p-0">
             <ul class="nav-menus">
                 <li><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize"></i></a></li>
+                <li><a class="text-dark" href="#!" onclick="javascript:enterLockMode()"><i data-feather="lock"></i></a></li>
                 <li class="onhover-dropdown">
                     <div class="bookmark-box"><i data-feather="star"></i></div>
                     <div class="bookmark-dropdown onhover-show-div">
@@ -104,7 +105,7 @@ $count_passwords = $Passwords->count_user_passwords($session_userId);
                     </ul>
                 </li>
                 <li>
-                    <div class="mode"><i class="fa fa-moon-o"></i></div>
+                    <div class="mode" style="cursor: pointer;"><i class="fa fa-circle-half-stroke"></i></div>
                 </li>
                 <li class="onhover-dropdown"><i data-feather="message-square"></i>
                     <ul class="chat-dropdown onhover-show-div">

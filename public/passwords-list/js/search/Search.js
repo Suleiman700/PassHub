@@ -74,9 +74,6 @@ class Search {
         Tbl_Passwords.clearRows()
 
         if (filteredPasswords.length) {
-            // show clear filters button if filter applied
-            if (filterApplied) buttonClearFilters.shown(true)
-
             // add passwords to table
             filteredPasswords.forEach(filteredPassword => {
                 Tbl_Passwords.rowAdd(filteredPassword)
@@ -86,6 +83,9 @@ class Search {
             // show no results
             Tbl_Passwords.showNoResultsRow()
         }
+
+        // show clear filters button if filter applied
+        if (filterApplied) buttonClearFilters.shown(true)
 
         // enable search button
         buttonSearchFilters.enabled(true)

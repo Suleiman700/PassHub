@@ -9,7 +9,6 @@ $pageTitle = "Passwords | $appName";
 <?php
 require_once '../../include/page-head.php';
 ?>
-
 <body>
 <!-- Loader starts-->
 <div class="loader-wrapper">

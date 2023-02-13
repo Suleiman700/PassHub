@@ -70,6 +70,7 @@ class Tbl_Passwords {
         // password cell
         const cell_password = document.createElement('td')
         const div = document.createElement('div')
+        div.style.minWidth = 'max-content'
         // --------------------------
         const input = document.createElement('input')
         input.setAttribute('type', 'password')

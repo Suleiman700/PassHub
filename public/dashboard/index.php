@@ -1114,5 +1114,11 @@ require_once '../../include/page-head.php';
 <script src="../../assets/js/theme-customizer/customizer.js"></script>
 <!-- login js-->
 <!-- Plugin used-->
+
+<script>
+    $('.loader-wrapper').fadeOut('fast', function() {
+        $(this).remove();
+    });
+</script>
 </body>
 </html>

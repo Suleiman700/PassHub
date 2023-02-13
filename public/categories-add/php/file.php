@@ -9,6 +9,9 @@ $Categories = new Categories();
 $session_isLogged = $Session->isLogged();
 
 if (isset($_POST['model']) && $_POST['model'] === 'addNewCategory' && $session_isLogged) {
+    // this will reject request and return error message to user then do exit;
+    require_once '../../../functions/requests/reject-request-in-lock-mode.php';
+
     // get user id from session
     $session_userId = $Session->getSessionUserId();
 

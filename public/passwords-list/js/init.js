@@ -59,8 +59,12 @@ async function prepareCategoriesTable() {
                                 <h6>Error Code: ${error['errorCode']}</h6>
                             </div>
                         `;
-                    }).join('')
-            })
+                    }).join(''),
+                allowOutsideClick: false,
+                confirmButtonText: 'Ok'
+            }).then(function() {
+                window.location = '../lock-mode/index.php';
+            });
         }
     }
 }

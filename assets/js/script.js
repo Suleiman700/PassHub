@@ -320,12 +320,3 @@ $(".mode").on("click", function () {
 
     // console.log(color)
     });
-
-function enterLockMode() {
-    
-    console.log('clicked')
-}
-
-$('.loader-wrapper').fadeOut('fast', function() {
-    $(this).remove();
-});

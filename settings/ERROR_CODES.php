@@ -209,4 +209,46 @@ $ERROR_CODES = array(
             ),
         ),
     ),
+    "PINCODE" => array(
+        "VALIDATION" => array(
+            "IDENTIFIERS" => array(
+                "PINCODE_IDENTIFIER" => array(
+                    "IDENTIFIER_NOT_FOUND_IN_REQUEST" => array(
+                        "NAME" => "Pin Code identifier was not found in request",
+                        "CODE" => "PVIPI.1001",
+                        "CAUSE" => "The Pin Code was not found in the request data.",
+                        "FIX" => "Make sure that the Pin Code exists in the request data."
+                    ),
+                    "IDENTIFIER_INCORRECT" => array(
+                        "NAME" => "Incorrect Pin Code",
+                        "CODE" => "PVIPI.1002",
+                        "CAUSE" => "Found out that user's Pin Code is incorrect.",
+                        "FIX" => "Make sure that the pin code sent in request matches user's pin code."
+                    ),
+                    "IDENTIFIER_MUST_CONTAIN_NUMBERS_ONLY" => array(
+                        "NAME" => "Pin Code must contain numbers only",
+                        "CODE" => "PVIPI.1003",
+                        "CAUSE" => "Found out that Pin Code contains characters that are not numbers",
+                        "FIX" => "Make sure that the password identifier contains numbers only."
+                    ),
+                    "IDENTIFIER_OWNER_NOT_FOUND" => array(
+                        "NAME" => "Pin Code user was not found",
+                        "CODE" => "PVIPI.1004",
+                        "CAUSE" => "Found out that Pin Code's owner was not found in database",
+                        "FIX" => "Make sure that the password identifier's owner data exists in database (tried to get user data from database to validate pin code, and user data were not found)."
+                    ),
+                ),
+            ),
+        ),
+    ),
+    "REQUESTS" => array(
+        "REJECTED" => array(
+            "IN_LOCK_MODE" => array(
+                "NAME" => "Request Rejected In Lock Mode",
+                "CODE" => "RRI.1001",
+                "CAUSE" => "Request rejected because user is in lock mode.",
+                "FIX" => "Make sure that user is not in lock mode before sending request."
+            ),
+        ),
+    ),
 );

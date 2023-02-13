@@ -1,12 +1,12 @@
 <?php
 
+// this will reject request and return error message to user then do exit;
+require_once '../../../functions/requests/reject-request-in-lock-mode.php';
+
 if (isset($_GET['model']) && $_GET['model'] === 'fetchPasswords') {
-    require_once '../../../classes/authentication/Session.php';
     require_once '../../../classes/categories/Categories.php';
     require_once '../../../classes/passwords/Passwords.php';
     require_once '../../../classes/helpers/Encryption.php';
-    require_once '../../../settings/ERROR_CODES.php';
-    $Session = new Session();
     $Categories = new Categories();
     $Passwords = new Passwords();
     $Encryption = new Encryption();

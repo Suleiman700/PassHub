@@ -8,11 +8,18 @@ require_once '../../classes/authentication/Session.php';
 require_once '../../classes/categories/Categories.php';
 require_once '../../classes/passwords/Passwords.php';
 
+$Session = new Session();
 
 // redirect non logged-in users to login page
-$Session = new Session();
 if (!$Session->isLogged()) {
     header('Location: ../login/index.php');
+    exit;
+}
+
+
+// redirect user if in lock mode
+if ($Session->inLockMode()) {
+    header('Location: ../lock-mode/index.php');
     exit;
 }
 
@@ -144,3 +151,11 @@ $count_passwords = $Passwords->count_user_passwords($session_userId);
         <div class="d-lg-none mobile-toggle pull-right w-auto"><i data-feather="more-horizontal"></i></div>
     </div>
 </div>
+
+<script>
+    function enterLockMode() {
+<!--        --><?php //$Session->setLockMode(true);?>
+
+        window.location.href= '../lock-mode/index.php'
+    }
+</script>

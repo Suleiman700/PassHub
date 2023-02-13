@@ -48,7 +48,12 @@ class Save {
                 title: 'Ops...',
                 html:
                     response['errors'].map(error => {
-                        return `<h6>${error}</h6>`;
+                        return `
+                            <div>
+                                <h6>${error['error']}</h6>
+                                <h6>Error Code: ${error['errorCode']}</h6>
+                            </div>
+                        `;
                     }).join('')
             })
         }

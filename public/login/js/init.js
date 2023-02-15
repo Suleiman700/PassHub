@@ -5,3 +5,7 @@ import inputPinCode from './inputs/input-pin-code.js';
 
 // buttons
 import buttonLogin from './buttons/button-login.js';
+
+$('.loader-wrapper').fadeOut('fast', function() {
+    $(this).remove();
+});

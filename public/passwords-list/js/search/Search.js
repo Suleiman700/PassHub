@@ -84,8 +84,15 @@ class Search {
             Tbl_Passwords.showNoResultsRow()
         }
 
-        // show clear filters button if filter applied
-        if (filterApplied) buttonClearFilters.shown(true)
+        // show clear filters button if filters applied
+        if (filterApplied) {
+            buttonClearFilters.shown(true)
+        }
+        // hide clear filters button if no filters applied
+        else {
+            buttonClearFilters.shown(false)
+        }
+
 
         // enable search button
         buttonSearchFilters.enabled(true)

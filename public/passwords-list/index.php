@@ -68,7 +68,7 @@ require_once '../../include/page-head.php';
                                             <label class="form-label" for="filter-username">Username</label>
                                             <div class="input-group">
                                                 <span class="input-group-text"><i class="fa fa-link"></i></span>
-                                                <input type="text" class="form-control" id="filter-username">
+                                                <input type="text" class="form-control" id="filter-username" autocomplete="on">
                                             </div>
                                         </div>
                                         <div class="col-md-4 mb-3">
@@ -82,7 +82,7 @@ require_once '../../include/page-head.php';
                                             <label class="form-label" for="filter-website">Website</label>
                                             <div class="input-group">
                                                 <span class="input-group-text"><i class="fa fa-link"></i></span>
-                                                <input type="text" class="form-control" id="filter-website">
+                                                <input type="text" class="form-control" id="filter-website" autocomplete="on">
                                             </div>
                                         </div>
                                     </div>
@@ -91,18 +91,18 @@ require_once '../../include/page-head.php';
                                             <label class="form-label" for="filter-description">Description</label>
                                             <div class="input-group">
                                                 <span class="input-group-text"><i class="fa fa-font"></i></span>
-                                                <input type="text" class="form-control" id="filter-description">
+                                                <input type="text" class="form-control" id="filter-description" autocomplete="on">
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label class="form-label" for="filter-note">Note</label>
                                             <div class="input-group">
                                                 <span class="input-group-text"><i class="fa fa-sticky-note"></i></span>
-                                                <input type="text" class="form-control" id="filter-note">
+                                                <input type="text" class="form-control" id="filter-note" autocomplete="on">
                                             </div>
                                         </div>
                                     </div>
-                                    <button class="btn btn-primary" id="button-search-filters"><i class="fa fa-search"></i> Search</button>
+                                    <button type="submit" class="btn btn-primary" id="button-search-filters"><i class="fa fa-search"></i> Search</button>
                                     <button class="btn btn-secondary" id="button-clear-filters"><i class="fa fa-times"></i> Clear Filters</button>
                                 </div>
                             </div>
@@ -114,7 +114,7 @@ require_once '../../include/page-head.php';
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="table-responsive">
-                                <table class="table table-border-vertical table-hover text-center" id="passwords-table" style="white-space: nowrap;">
+                                <table class="table table-border-vertical table-hover table-striped text-center" id="passwords-table" style="white-space: nowrap;">
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>

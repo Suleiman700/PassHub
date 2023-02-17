@@ -45,8 +45,6 @@ class Login
         return $this->username;
     }
 
-
-
     /**
      * set email address
      * @param string $emailAddress

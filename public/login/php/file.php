@@ -3,11 +3,13 @@
 if (isset($_POST['model']) && $_POST['model'] === 'performLogin') {
     require_once '../../../classes/authentication/Session.php';
     require_once '../../../classes/authentication/Login.php';
+    require_once '../../../classes/authentication/SuccessfulLogin.php';
     require_once '../../../classes/users/Users.php';
     require_once '../../../functions/validators/validation-email.php';
     require_once '../../../functions/validators/validate-pin-code.php';
 
     $Login = new Login();
+    $SuccessfulLogin = new SuccessfulLogin();
     $Users = new Users();
     $Session = new Session();
 
@@ -61,6 +63,12 @@ if (isset($_POST['model']) && $_POST['model'] === 'performLogin') {
             else {
                 // set logged in session
                 $Session->set_logged_session($userData['data']['id'], $userData['data']['email'], $userData['data']['fullname']);
+
+                // store successful login
+                $SuccessfulLogin->setUserId($userData['data']['id']);
+                $SuccessfulLogin->setIpAddress($_SERVER['REMOTE_ADDR']);
+                $SuccessfulLogin->setUserAgent($_SERVER['HTTP_USER_AGENT']);
+                $SuccessfulLogin->save();
 
                 $state = true;
             }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 17, 2023 at 06:40 AM
+-- Generation Time: Feb 18, 2023 at 12:23 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -97,7 +97,7 @@ INSERT INTO `passwords` (`id`, `user_id`, `category_id`, `username`, `password`,
 
 CREATE TABLE `successful_logins` (
   `id` int(11) NOT NULL,
-  `user_id` smallint(6) NOT NULL,
+  `user_id` smallint(6) DEFAULT NULL,
   `login_time` timestamp NOT NULL DEFAULT current_timestamp(),
   `ip_address` char(100) NOT NULL,
   `user_agent` text DEFAULT NULL
@@ -198,13 +198,13 @@ ALTER TABLE `users_keys`
 -- AUTO_INCREMENT for table `failed_logins`
 --
 ALTER TABLE `failed_logins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `successful_logins`
 --
 ALTER TABLE `successful_logins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Constraints for dumped tables

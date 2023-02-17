@@ -54,7 +54,7 @@ class Modal_DeleteHistory {
                 else {
                     // hide delete all history button
                     buttonDeleteAllHistory.shown(false)
-                    
+
                     // show no results row
                     Tbl_SuccessfulLogins.showNoResultsRow()
                 }

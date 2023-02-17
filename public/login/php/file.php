@@ -4,12 +4,14 @@ if (isset($_POST['model']) && $_POST['model'] === 'performLogin') {
     require_once '../../../classes/authentication/Session.php';
     require_once '../../../classes/authentication/Login.php';
     require_once '../../../classes/authentication/SuccessfulLogin.php';
+    require_once '../../../classes/authentication/FailedLogins.php';
     require_once '../../../classes/users/Users.php';
     require_once '../../../functions/validators/validation-email.php';
     require_once '../../../functions/validators/validate-pin-code.php';
 
     $Login = new Login();
     $SuccessfulLogin = new SuccessfulLogin();
+    $FailedLogins = new FailedLogins();
     $Users = new Users();
     $Session = new Session();
 
@@ -54,11 +56,29 @@ if (isset($_POST['model']) && $_POST['model'] === 'performLogin') {
             if (!$Login->verify_password_hash($hashedPassword)) {
                 $state = false;
                 $errors[] = 'Invalid email address or password';
+
+                // store failed login
+                $FailedLogins->setUserId($userData['data']['id']);
+                $FailedLogins->setUsedPinCode($_POST['pinCode']);
+                $FailedLogins->setUsedPassword($_POST['password']);
+                $FailedLogins->setIpAddress($_SERVER['REMOTE_ADDR']);
+                $FailedLogins->setUserAgent($_SERVER['HTTP_USER_AGENT']);
+                $FailedLogins->setFailReason('Invalid password');
+                $FailedLogins->save();
             }
             // verify pin code
             else if ($Login->getPinCode() != $userData['data']['pin_code']) {
                 $state = false;
                 $errors[] = 'Invalid pin code';
+
+                // store failed login
+                $FailedLogins->setUserId($userData['data']['id']);
+                $FailedLogins->setUsedPinCode($_POST['pinCode']);
+                $FailedLogins->setUsedPassword($_POST['password']);
+                $FailedLogins->setIpAddress($_SERVER['REMOTE_ADDR']);
+                $FailedLogins->setUserAgent($_SERVER['HTTP_USER_AGENT']);
+                $FailedLogins->setFailReason('Invalid pin code');
+                $FailedLogins->save();
             }
             else {
                 // set logged in session

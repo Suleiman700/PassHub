@@ -41,6 +41,14 @@
                     </li>
                     <li class="dropdown"><a class="nav-link menu-title link-nav" href="../passwords-list/index.php"><i data-feather="list"></i><span>Passwords List</span></a></li>
                     <li class="dropdown"><a class="nav-link menu-title link-nav" href="../passwords-add/index.php"><i data-feather="plus"></i><span>Add Password</span></a></li>
+
+                    <li class="sidebar-main-title">
+                        <div>
+                            <h6>Logins History</h6>
+                        </div>
+                    </li>
+                    <li class="dropdown"><a class="nav-link menu-title link-nav" href="../successful-logins/index.php"><i data-feather="list"></i><span>Successful Logins</span></a></li>
+                    <li class="dropdown"><a class="nav-link menu-title link-nav" href="../failed-logins/index.php"><i data-feather="list"></i><span>Failed Logins</span></a></li>
                 </ul>
             </div>
             <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>

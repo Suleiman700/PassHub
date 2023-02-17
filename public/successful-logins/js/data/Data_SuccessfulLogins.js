@@ -26,6 +26,16 @@ class Data_SuccessfulLogins {
     dataGet() {
         return this.#data;
     }
+
+    /**
+     * get data by key and value
+     * @param _key {string} example: id
+     * @param _value {string} example: 5
+     * @return {object}}
+     */
+    dataGetKeyValue(_key, _value) {
+        return this.#data.find(data => data[_key] == _value)
+    }
 }
 
 export default new Data_SuccessfulLogins()

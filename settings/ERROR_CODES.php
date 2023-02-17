@@ -251,4 +251,76 @@ $ERROR_CODES = array(
             ),
         ),
     ),
+    "SUCCESSFUL_LOGINS" => array(
+        "DELETE" => array(
+            "QUERY_FAILED" => array(
+                "NAME" => "Error deleting history",
+                "CODE" => "SDQ.1001",
+                "CAUSE" => "The query failed to execute properly. This could be due to a variety of reasons including incorrect SQL syntax, missing data, or connectivity issues.",
+                "FIX" => "Check the SQL syntax, verify that all required data has been provided, and troubleshoot any connectivity issues."
+            ),
+            "VALIDATION" => array(
+                "DOESNT_BELONG_TO_USER" => array(
+                    "NAME" => "You dont own this history",
+                    "CODE" => "SDVI.1001",
+                    "CAUSE" => "Found out that history id does not belong to user id",
+                    "FIX" => "Make sure that the history id you are trying to check belongs to the user id when trying to delete it"
+                ),
+                "NOT_FOUND" => array(
+                    "NAME" => "History was not found",
+                    "CODE" => "SDVI.1002",
+                    "CAUSE" => "Found out that history id does not exist",
+                    "FIX" => "Make sure that the history id you are trying to check exists in database when trying to delete it"
+                ),
+                "IDENTIFIER_NOT_FOUND" => array(
+                    "NAME" => "History identifier was not found",
+                    "CODE" => "SDVI.1003",
+                    "CAUSE" => "Found out that history id identifier does not exist",
+                    "FIX" => "Make sure that the history id is sent to the server when you are checking it"
+                ),
+                "USER_DOES_NOT_HAVE_HISTORY" => array(
+                    "NAME" => "You dont have any history",
+                    "CODE" => "SDVI.1004",
+                    "CAUSE" => "Found out that user does not have any history.",
+                    "FIX" => "Make sure that the there are history belongs to the user id in the database."
+                ),
+            ),
+        ),
+    ),
+    "FAILED_LOGINS" => array(
+        "DELETE" => array(
+            "QUERY_FAILED" => array(
+                "NAME" => "Error deleting history",
+                "CODE" => "FDQ.1001",
+                "CAUSE" => "The query failed to execute properly. This could be due to a variety of reasons including incorrect SQL syntax, missing data, or connectivity issues.",
+                "FIX" => "Check the SQL syntax, verify that all required data has been provided, and troubleshoot any connectivity issues."
+            ),
+            "VALIDATION" => array(
+                "DOESNT_BELONG_TO_USER" => array(
+                    "NAME" => "You dont own this history",
+                    "CODE" => "FDVI.1001",
+                    "CAUSE" => "Found out that history id does not belong to user id",
+                    "FIX" => "Make sure that the history id you are trying to check belongs to the user id when trying to delete it"
+                ),
+                "NOT_FOUND" => array(
+                    "NAME" => "History was not found",
+                    "CODE" => "FDVI.1002",
+                    "CAUSE" => "Found out that history id does not exist",
+                    "FIX" => "Make sure that the history id you are trying to check exists in database when trying to delete it"
+                ),
+                "IDENTIFIER_NOT_FOUND" => array(
+                    "NAME" => "History identifier was not found",
+                    "CODE" => "FDVI.1003",
+                    "CAUSE" => "Found out that history id identifier does not exist",
+                    "FIX" => "Make sure that the history id is sent to the server when you are checking it"
+                ),
+                "USER_DOES_NOT_HAVE_HISTORY" => array(
+                    "NAME" => "You dont have any history",
+                    "CODE" => "FDVI.1004",
+                    "CAUSE" => "Found out that user does not have any history.",
+                    "FIX" => "Make sure that the there are history belongs to the user id in the database."
+                ),
+            ),
+        ),
+    ),
 );

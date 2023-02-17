@@ -36,7 +36,7 @@ class SuccessfulLogin
 
     /**
      * get history by user id
-     * @return void
+     * @return array
      */
     public function get_history_of_user_id(): array
     {
@@ -50,19 +50,118 @@ class SuccessfulLogin
         // sanitize data
         $this->userId = strip_tags(htmlspecialchars(mysqli_real_escape_string($conn, $this->userId)));
 
-        $query = "SELECT * FROM successful_logins WHERE user_id = ? ORDER BY id DESC";
-        $stmt = mysqli_prepare($conn, $query);
-        mysqli_stmt_bind_param($stmt, "i", $this->userId);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
-        if ($result !== false) {
+        $query = "SELECT * FROM successful_logins WHERE user_id = '$this->userId' ORDER BY id DESC";
+        $stmt = mysqli_query($conn, $query);
+        $result = $stmt->fetch_all(MYSQLI_ASSOC);
+        if ($result) {
             $res['dataFound'] = true;
-            $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
-            $res['data'] = $data;
-            mysqli_stmt_free_result($stmt); // Free the result set
+            $res['data'] = $result;
         }
         else {
             $res['dataFound'] = false;
+        }
+
+        return $res;
+    }
+
+    /**
+     * get history by id
+     * @return void
+     */
+    public function get_history_by_id(string|int $_id): array
+    {
+        global $conn;
+
+        $res = array(
+            'dataFound' => false,
+            'data' => array()
+        );
+
+        // sanitize data
+        $_id = strip_tags(htmlspecialchars(mysqli_real_escape_string($conn, $_id)));
+
+        $query = "SELECT * FROM successful_logins WHERE id = ?";
+        $stmt = mysqli_prepare($conn, $query);
+        mysqli_stmt_bind_param($stmt, "i", $_id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $result = $result->fetch_array(MYSQLI_ASSOC);
+        if ($result) {
+            $res['dataFound'] = true;
+            $res['data'] = $result;
+        }
+        else {
+            $res['dataFound'] = false;
+        }
+        mysqli_stmt_close($stmt);
+
+        return $res;
+    }
+
+    /**
+     * delete history
+     * @param string|int $_id
+     * @return array
+     */
+    public function delete_history_by_id(string|int $_id): array
+    {
+        global $conn;
+        $res = array(
+            'dataDeleted' => false,
+            'errors' => array()
+        );
+
+        $_id = strip_tags(htmlspecialchars(mysqli_real_escape_string($conn, $_id)));
+
+        $query = "DELETE FROM successful_logins WHERE id = ?";
+        $stmt = mysqli_prepare($conn, $query);
+        mysqli_stmt_bind_param($stmt, "i", $_id);
+        mysqli_stmt_execute($stmt);
+
+        if (mysqli_stmt_affected_rows($stmt) > 0) {
+            $res['dataDeleted'] = true;
+        } else {
+            // echo "Insert query failed: " . mysqli_stmt_error($stmt);
+
+            $res['errors'][] = array(
+                'error' => $ERROR_CODES['SUCCESSFUL_LOGINS']['DELETE']['QUERY_FAILED']['NAME'],
+                'errorCode' => $ERROR_CODES['SUCCESSFUL_LOGINS']['DELETE']['QUERY_FAILED']['CODE'],
+            );
+        }
+        mysqli_stmt_close($stmt);
+
+        return $res;
+    }
+
+    /**
+     * delete all user history
+     * @param string|int $_id
+     * @return array
+     */
+    public function delete_all_user_history(): array
+    {
+        global $conn;
+        $res = array(
+            'dataDeleted' => false,
+            'errors' => array()
+        );
+
+        $this->userId = strip_tags(htmlspecialchars(mysqli_real_escape_string($conn, $this->userId)));
+
+        $query = "DELETE FROM successful_logins WHERE user_id = ?";
+        $stmt = mysqli_prepare($conn, $query);
+        mysqli_stmt_bind_param($stmt, "i", $this->userId);
+        mysqli_stmt_execute($stmt);
+
+        if (mysqli_stmt_affected_rows($stmt) > 0) {
+            $res['dataDeleted'] = true;
+        } else {
+//             echo "Insert query failed: " . mysqli_stmt_error($stmt);
+
+            $res['errors'][] = array(
+                'error' => $ERROR_CODES['SUCCESSFUL_LOGINS']['DELETE']['QUERY_FAILED']['NAME'],
+                'errorCode' => $ERROR_CODES['SUCCESSFUL_LOGINS']['DELETE']['QUERY_FAILED']['CODE'],
+            );
         }
         mysqli_stmt_close($stmt);
 

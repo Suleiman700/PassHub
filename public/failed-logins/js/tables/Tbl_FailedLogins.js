@@ -1,4 +1,7 @@
 
+// modals
+import Modal_DeleteHistory from '../modals/Modal_DeleteHistory.js';
+
 class Tbl_FailedLogins {
     constructor() {
         this.tableId = 'failed-logins-table'
@@ -10,7 +13,7 @@ class Tbl_FailedLogins {
      */
     showNoResultsRow() {
         // clear table rows
-        this.#clearRows()
+        this.clearRows()
 
         // show row
         const tableTbody = document.querySelector(`#${this.tableId} tbody`)
@@ -47,10 +50,11 @@ class Tbl_FailedLogins {
      */
     #buildRow(_loginHistoryInfo) {
         const tr = document.createElement('tr')
+        tr.id = _loginHistoryInfo['id']
 
         // index cell
         const cell_index = document.createElement('th')
-        cell_index.innerText = this.#rowsCount() + 1
+        cell_index.innerText = this.rowsCount() + 1
         cell_index.setAttribute('scope', 'row')
         tr.appendChild(cell_index)
 
@@ -98,7 +102,8 @@ class Tbl_FailedLogins {
         button_edit.style.cursor = 'pointer'
         button_edit.innerHTML = ' Delete'
         button_edit.addEventListener('click', () => {
-            console.log('clicked')
+            Modal_DeleteHistory.targetHistoryId = _loginHistoryInfo['id']
+            Modal_DeleteHistory.shown(true)
         })
         cell_options.append(button_edit)
         tr.appendChild(cell_options)
@@ -110,7 +115,7 @@ class Tbl_FailedLogins {
      * clear table rows
      * @return {void}
      */
-    #clearRows() {
+    clearRows() {
         document.querySelector(`#${this.tableId} tbody`).innerHTML = ''
     }
 
@@ -118,9 +123,31 @@ class Tbl_FailedLogins {
      * get the number of table rows
      * @return {number}
      */
-    #rowsCount() {
+    rowsCount() {
         const rows = document.querySelectorAll(`#${this.tableId} tbody tr`)
         return rows.length
+    }
+
+    /**
+     * delete row from table by history id
+     * @param _historyId {number}
+     * @return {void}
+     */
+    deleteRowById(_historyId) {
+        document.querySelector(`#${this.tableId} tbody tr[id="${_historyId}"]`).remove()
+    }
+
+    /**
+     * reindex table rows
+     * @return {void}
+     */
+    reindexRows() {
+        // Update the index of the remaining rows
+        const rows = document.querySelectorAll(`#${this.tableId} tbody tr`);
+        rows.forEach((row, index) => {
+            // Update the index in the first cell of the row
+            row.querySelector('th').textContent = index + 1;
+        });
     }
 }
 

@@ -31,7 +31,7 @@ require_once '../../include/page-head.php';
         <div class="page-body">
             <div class="container-fluid">
                 <div class="page-header">
-                    <div class="row">
+                    <div class="row" id="header">
                         <div class="col-sm-6">
                             <h3>Failed Logins</h3>
                             <ol class="breadcrumb">
@@ -44,7 +44,7 @@ require_once '../../include/page-head.php';
                             <div class="bookmark">
                                 <ul>
                                     <li>
-                                        <a class="btn btn-success text-white" href="../categories-add/index.php"><i class="fa fa-trash"></i> Clear History</a>
+                                        <button class="btn btn-success" id="delete-all-history"><i class="fa fa-trash"></i> Delete All History</button>
                                     </li>
                                 </ul>
                             </div>
@@ -99,6 +99,24 @@ require_once '../../include/page-head.php';
         </footer>
     </div>
 </div>
+
+<div class="modal fade" id="modal_delete_history" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content text-center">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete History</h5>
+            </div>
+            <div class="modal-body">
+                <p id="title">Do you really want to delete this history ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="confirm-delete"><i class="fa fa-check"></i> Yes, Delete!</button>
+                <button type="button" class="btn btn-secondary" id="cancel-delete" data-bs-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?php require_once '../../include/page-footer.php'; ?>
 <script src="./js/init.js" type="module"></script>
 </body>

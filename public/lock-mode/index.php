@@ -65,7 +65,9 @@ if (!$Session->inLockMode()) {
             <div class="comingsoon-inner text-center">
                 <a href="javascript:void(0)"><img src="../../assets/images/logo/logo-1.png" alt=""></a>
                 <h2 class="pt-3">Lock Mode</h2>
-<!--                <h5>Enter PIN Code To Unlock</h5>-->
+                <div class="row d-flex justify-content-center">
+                    <h5 class="col-sm-12 col-md-6 text-warning" id="message"></h5>
+                </div>
                 <style>
                     .input-square {
                         /*width: 50px;*/

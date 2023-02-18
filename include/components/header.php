@@ -159,3 +159,13 @@ $count_passwords = $Passwords->count_user_passwords($session_userId);
         window.location.href= '../lock-mode/index.php'
     }
 </script>
+
+<script type="module">
+    import EncryptionService from '/javascript/security/EncryptionService.js';
+    const encryptionService = new EncryptionService()
+    const encryptedMessage = await encryptionService.encryptMessage(`For your security, we've activated a lock mode due to inactivity. Please re-enter your credentials to resume using the site. This helps to prevent unauthorized access and ensure that your personal information remains protected.`);
+
+    // inactivity lock
+    import InactivityLock from '/javascript/security/InactivityLock.js';
+    InactivityLock.setMessage(encryptedMessage)
+</script>

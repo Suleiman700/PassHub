@@ -114,7 +114,7 @@ require_once '../../include/page-head.php';
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="table-responsive">
-                                <table class="table table-border-vertical table-hover table-striped text-center" id="passwords-table" style="white-space: nowrap;">
+                                <table class="table table-border-vertical table-hover text-center" id="passwords-table" style="white-space: nowrap;">
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>

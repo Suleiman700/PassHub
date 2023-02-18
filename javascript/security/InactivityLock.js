@@ -6,7 +6,7 @@
 import EncryptionService from '/javascript/security/EncryptionService.js';
 
 class InactivityLock {
-    INACTIVITY_TIME_LIMIT = 3000 // 1 minute
+    INACTIVITY_TIME_LIMIT = 600000 // 10 minutes
     lockMessage = undefined
 
     constructor() {

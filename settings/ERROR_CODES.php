@@ -241,6 +241,38 @@ $ERROR_CODES = array(
             ),
         ),
     ),
+    "TWOFACTOR" => array(
+        "VALIDATION" => array(
+            "IDENTIFIERS" => array(
+                "TWOFACTOR_IDENTIFIER" => array(
+                    "IDENTIFIER_NOT_FOUND_IN_REQUEST" => array(
+                        "NAME" => "Two Factor code was not found in request",
+                        "CODE" => "TVITI.1001",
+                        "CAUSE" => "The Two Factor code was not found in the request data.",
+                        "FIX" => "Make sure that the Two Factor code exists in the request data."
+                    ),
+                    "IDENTIFIER_INCORRECT" => array(
+                        "NAME" => "Incorrect Two Factor code",
+                        "CODE" => "TVITI.1002",
+                        "CAUSE" => "Found out that user's Two Factor code is incorrect.",
+                        "FIX" => "Make sure that the Two Factor code sent in request matches user's pin code."
+                    ),
+                    "IDENTIFIER_MUST_CONTAIN_NUMBERS_ONLY" => array(
+                        "NAME" => "Incorrect Two Factor code",
+                        "CODE" => "TVITI.1003",
+                        "CAUSE" => "Found out that Two Factor code contains characters that are not numbers",
+                        "FIX" => "Make sure that the Two Factor code identifier contains numbers only."
+                    ),
+                    "IDENTIFIER_OWNER_NOT_FOUND" => array(
+                        "NAME" => "Two Factor user was not found",
+                        "CODE" => "TVITI.1004",
+                        "CAUSE" => "Found out that Two Factor's owner was not found in database",
+                        "FIX" => "Make sure that the Two Factor's owner data exists in database (tried to get user data from database to validate pin code, and user data were not found)."
+                    ),
+                ),
+            ),
+        ),
+    ),
     "REQUESTS" => array(
         "REJECTED" => array(
             "IN_LOCK_MODE" => array(

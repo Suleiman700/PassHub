@@ -84,7 +84,6 @@ class Login {
                 pinCode
             }
 
-
             const response = await RequestPost.send('./php/file.php', data, 'performLogin')
 
             // enable login button
@@ -93,8 +92,13 @@ class Login {
 
             // successful request
             if (response['state']) {
-                window.location.replace('../dashboard/index.php');
-
+                // check if in 2fa mode
+                if (response['in2FA']) {
+                    window.location.replace('../two-factor/index.php');
+                }
+                else {
+                    window.location.replace('../dashboard/index.php');
+                }
             }
             // unsuccessful request
             else if (!response['state']) {

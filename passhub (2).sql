@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 18, 2023 at 12:23 AM
+-- Generation Time: Feb 20, 2023 at 12:38 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -92,6 +92,29 @@ INSERT INTO `passwords` (`id`, `user_id`, `category_id`, `username`, `password`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `smtp_settings`
+--
+
+CREATE TABLE `smtp_settings` (
+  `id` tinyint(3) UNSIGNED NOT NULL,
+  `smtp_server` char(255) NOT NULL,
+  `smtp_username` char(255) NOT NULL,
+  `smtp_password` char(255) NOT NULL,
+  `smtp_auth` char(10) DEFAULT NULL,
+  `smtp_secure` char(10) NOT NULL,
+  `smtp_port` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `smtp_settings`
+--
+
+INSERT INTO `smtp_settings` (`id`, `smtp_server`, `smtp_username`, `smtp_password`, `smtp_auth`, `smtp_secure`, `smtp_port`) VALUES
+(1, 'smtp.hostinger.com', 'passhub@nicurb.com', 'A4%stP72Uu31', 'true', 'tls', 587);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `successful_logins`
 --
 
@@ -102,6 +125,13 @@ CREATE TABLE `successful_logins` (
   `ip_address` char(100) NOT NULL,
   `user_agent` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `successful_logins`
+--
+
+INSERT INTO `successful_logins` (`id`, `user_id`, `login_time`, `ip_address`, `user_agent`) VALUES
+(41, 0, '2023-02-19 23:25:37', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36');
 
 -- --------------------------------------------------------
 
@@ -144,6 +174,27 @@ CREATE TABLE `users_keys` (
 INSERT INTO `users_keys` (`id`, `user_id`, `secret_key`, `secret_iv`) VALUES
 (0, 0, 'YSvaZKQdbzljPzeWVE2qYnrDcdOVprg53yYgYzHbbqo=', '855sOQEHTbjWV3g79YMz0w==');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_settings`
+--
+
+CREATE TABLE `users_settings` (
+  `id` smallint(6) NOT NULL,
+  `user_id` smallint(6) DEFAULT NULL,
+  `enable_2fa` char(1) DEFAULT NULL,
+  `twofactor_code` char(6) DEFAULT NULL,
+  `enable_login_alerts` char(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `users_settings`
+--
+
+INSERT INTO `users_settings` (`id`, `user_id`, `enable_2fa`, `twofactor_code`, `enable_login_alerts`) VALUES
+(0, 0, '1', '596790', '1');
+
 --
 -- Indexes for dumped tables
 --
@@ -171,6 +222,12 @@ ALTER TABLE `passwords`
   ADD KEY `category_id` (`category_id`);
 
 --
+-- Indexes for table `smtp_settings`
+--
+ALTER TABLE `smtp_settings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `successful_logins`
 --
 ALTER TABLE `successful_logins`
@@ -191,6 +248,13 @@ ALTER TABLE `users_keys`
   ADD KEY `user_id` (`user_id`);
 
 --
+-- Indexes for table `users_settings`
+--
+ALTER TABLE `users_settings`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -198,13 +262,19 @@ ALTER TABLE `users_keys`
 -- AUTO_INCREMENT for table `failed_logins`
 --
 ALTER TABLE `failed_logins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+--
+-- AUTO_INCREMENT for table `smtp_settings`
+--
+ALTER TABLE `smtp_settings`
+  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `successful_logins`
 --
 ALTER TABLE `successful_logins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- Constraints for dumped tables
@@ -240,6 +310,12 @@ ALTER TABLE `successful_logins`
 --
 ALTER TABLE `users_keys`
   ADD CONSTRAINT `users_keys_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `users_settings`
+--
+ALTER TABLE `users_settings`
+  ADD CONSTRAINT `users_settings_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

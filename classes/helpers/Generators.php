@@ -27,4 +27,9 @@ class Generators
             return 0;
         }
     }
+
+    public function gen_random_twofactor_code(): int
+    {
+        return sprintf("%06d", rand(0, 999999));
+    }
 }

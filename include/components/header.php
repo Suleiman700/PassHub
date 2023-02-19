@@ -16,7 +16,6 @@ if (!$Session->isLogged()) {
     exit;
 }
 
-
 // redirect user if in lock mode
 if ($Session->inLockMode()) {
     header('Location: ../lock-mode/index.php');

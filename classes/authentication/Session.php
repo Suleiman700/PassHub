@@ -10,6 +10,7 @@ class Session
     private string $session_userEmail = 'PASSHUB_USEREMAIL';
     private string $session_fullname = 'PASSHUB_USERNAME';
     private string $session_inLockMode = 'PASSHUB_INLOCKMODE';
+    private string $session_in2FAMode = 'PASSHUB_IN2FAMODE';
 
     function __contructor(): void
     {}
@@ -108,6 +109,35 @@ class Session
     }
 
     /**
+     * set user 2FA mode
+     * @param bool $_option
+     * @return bool
+     */
+    public function set2FAMode(bool $_option): void
+    {
+        if ($_option) {
+            $_SESSION[$this->session_in2FAMode] = true;
+        }
+        else {
+            $_SESSION[$this->session_in2FAMode] = false;
+        }
+    }
+
+    /**
+     * check if user in 2FA mode
+     * @return bool
+     */
+    public function in2FAMode(): bool
+    {
+        if (isset($_SESSION[$this->session_in2FAMode]) && $_SESSION[$this->session_in2FAMode]) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    /**
      * receive user data and set logged in session
      * @param int $_userId example: 1
      * @param string $_userEmail example: person@domain.com
@@ -134,5 +164,6 @@ class Session
         unset($_SESSION[$this->session_userEmail]);
         unset($_SESSION[$this->session_fullname]);
         unset($_SESSION[$this->session_inLockMode]);
+        unset($_SESSION[$this->session_in2FAMode]);
     }
 }

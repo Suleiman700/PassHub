@@ -7,6 +7,10 @@ $pageTitle = "Login | $appName";
 $Session = new Session();
 if ($Session->isLogged()) {
     header('Location: ../dashboard/index.php');
+    exit;
+}
+else {
+    $Session->destory_logged_session();
 }
 ?>
 

@@ -355,4 +355,44 @@ $ERROR_CODES = array(
             ),
         ),
     ),
+    "USER_PROFILE" => array(
+        "UPDATE" => array(
+            "FULLNAME" => array(
+                "VALIDATION" => array(
+                    "ONE_OR_MORE_FIELDS_ARE_INVALID" => array(
+                        "NAME" => "One or more fields are invalid",
+                        "CODE" => "UUFVO.1001",
+                        "CAUSE" => "One or more required fields are empty or not set",
+                        "FIX" => "Make sure to check the required fields and check if they are set properly"
+                    ),
+                    "INVALID_PASSWORD" => array(
+                        "NAME" => "Wrong password",
+                        "CODE" => "UUFVI.1002",
+                        "CAUSE" => "Invalid password when comparing stored hashed password with request password",
+                        "FIX" => "Make sure that the request password matches stored hashed password."
+                    ),
+                    "USER_DATA" => array(
+                        "NOT_FOUND" => array(
+                            "NAME" => "No user data has been found",
+                            "CODE" => "UUFVUN.1001",
+                            "CAUSE" => "Found out that no user data has been found by session user id.",
+                            "FIX" => "Make sure that the user data exists in database by user id."
+                        )
+                    ),
+                ),
+                "QUERY_FAILED" => array(
+                    "NAME" => "Error updating fullname",
+                    "CODE" => "UUFVQ.1001",
+                    "CAUSE" => "The query failed to execute properly. This could be due to a variety of reasons including incorrect SQL syntax, missing data, or connectivity issues.",
+                    "FIX" => "Check the SQL syntax, verify that all required data has been provided, and troubleshoot any connectivity issues."
+                ),
+                "QUERY_FAILED_TRY_CATCH" => array(
+                    "NAME" => "Error updating fullname",
+                    "CODE" => "UUFVQ.1002",
+                    "CAUSE" => "The query failed to execute properly. This could be due to a variety of reasons including incorrect SQL syntax, missing data, or connectivity issues.",
+                    "FIX" => "Check the SQL syntax, verify that all required data has been provided, and troubleshoot any connectivity issues."
+                ),
+            ),
+        ),
+    ),
 );

@@ -107,7 +107,8 @@ class Login {
                 alert.shown(true)
                 alert.valueSet(response['errors'])
             }
-        } else {
+        }
+        else {
             // show alert
             alert.colorSet('danger')
             alert.shown(true)

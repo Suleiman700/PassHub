@@ -59,7 +59,7 @@ require_once '../../include/page-head.php';
                                                 <div class="media">
                                                     <img class="img-70 rounded-circle" alt="" src="../../assets/images/dashboard/1.png">
                                                     <div class="media-body">
-                                                        <h3 class="mb-1 f-20 txt-primary"><?php echo $session_username; ?></h3>
+                                                        <h3 class="mb-1 f-20 txt-primary" id="label_fullname"><?php echo $session_username; ?></h3>
                                                         <p class="f-12">MEMBER</p>
                                                     </div>
                                                 </div>
@@ -74,15 +74,40 @@ require_once '../../include/page-head.php';
                                     <hr class="my-5" />
 
                                     <ul class="nav nav-tabs border-tab" id="top-tab" role="tablist">
-                                        <li class="nav-item"><a class="nav-link active" id="top-home-tab" data-bs-toggle="tab" href="#top-home" role="tab" aria-controls="top-home" aria-selected="true"><i class="icofont icofont-key"></i>Password</a></li>
+                                        <li class="nav-item"><a class="nav-link active" id="tab-fullname" data-bs-toggle="tab" href="#section-fullname" role="tab" aria-controls="section-fullname" aria-selected="true"><i class="icofont icofont-user"></i>Full Name</a></li>
+                                        <li class="nav-item"><a class="nav-link" id="top-password-tab" data-bs-toggle="tab" href="#top-password" role="tab" aria-controls="top-password" aria-selected="true"><i class="icofont icofont-key"></i>Password</a></li>
                                         <li class="nav-item"><a class="nav-link" id="profile-top-tab" data-bs-toggle="tab" href="#top-profile" role="tab" aria-controls="top-profile" aria-selected="false"><i class="icofont icofont-pin"></i>Pin-Code</a></li>
                                     </ul>
                                     <div class="tab-content" id="top-tabContent">
-                                        <div class="tab-pane fade active show" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+                                        <div class="tab-pane fade active show" id="section-fullname" role="tabpanel" aria-labelledby="top-fullname-tab">
+                                            <div class="row">
+                                                <div class="card-header pb-0">
+                                                    <h5>Change Your Name</h5>
+                                                    <span>Change your account name.</span>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="theme-form">
+                                                        <div class="mb-3">
+                                                            <label class="col-form-label pt-0" for="fullname">Full Name <code class="text-danger">*</code></label>
+                                                            <input type="text" class="form-control" id="fullname" value="<?php echo $session_username; ?>" placeholder="John Doe">
+                                                            <small class="form-text text-muted" id="emailHelp">We'll never share your data with anyone else.</small>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="col-form-label pt-0" for="password">Password <code class="text-danger">*</code></label>
+                                                            <input type="password" class="form-control" id="password" placeholder="Enter your account password">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <button class="btn btn-primary" id="save"><i class="fa fa-save"></i> Save</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="top-password" role="tabpanel" aria-labelledby="top-password-tab">
+                                            <p>2</p>
                                         </div>
                                         <div class="tab-pane fade" id="top-profile" role="tabpanel" aria-labelledby="profile-top-tab">
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+                                            <p>3</p>
                                         </div>
                                     </div>
                                 </div>

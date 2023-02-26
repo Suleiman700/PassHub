@@ -117,6 +117,52 @@ class Users
     }
 
     /**
+     * update user fullname
+     * @param string $_newFullname
+     * @param string|int $_userId
+     * @return array
+     */
+    public function update_fullname(string $_newFullname, string|int $_userId): array
+    {
+        global $conn;
+
+        $res = array(
+            'dataUpdated' => false,
+            'errors' => array(),
+        );
+
+        // sanitize data
+        $_newFullname = strip_tags(htmlspecialchars(mysqli_real_escape_string($conn, $_newFullname)));
+        $_userId = strip_tags(htmlspecialchars(mysqli_real_escape_string($conn, $_userId)));
+
+        try {
+            // update row
+            $query = "UPDATE users SET fullname=? WHERE id=?";
+            $stmt = mysqli_prepare($conn, $query);
+            mysqli_stmt_bind_param($stmt, "si", $_newFullname, $_userId);
+            mysqli_stmt_execute($stmt);
+
+            if (mysqli_stmt_errno($stmt) == 0) {
+                $res['dataUpdated'] = true;
+            } else {
+                $res['errors'][] = array(
+                    'error' => $ERROR_CODES['USER_PROFILE']['UPDATE']['FULLNAME']['QUERY_FAILED']['NAME'],
+                    'errorCode' => $ERROR_CODES['USER_PROFILE']['UPDATE']['FULLNAME']['QUERY_FAILED']['CODE'],
+                );
+            }
+            mysqli_stmt_close($stmt);
+        }
+        catch (Exception $e) {
+            $res['errors'][] = array(
+                'error' => $ERROR_CODES['USER_PROFILE']['UPDATE']['FULLNAME']['QUERY_FAILED_TRY_CATCH']['NAME'],
+                'errorCode' => $ERROR_CODES['USER_PROFILE']['UPDATE']['FULLNAME']['QUERY_FAILED_TRY_CATCH']['CODE'],
+            );
+        }
+
+        return $res;
+    }
+
+    /**
      * generate new primary key for inserting new record into table
      * @return int
      */

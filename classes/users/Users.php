@@ -163,8 +163,8 @@ class Users
     }
 
     /**
-     * update user fullname
-     * @param string $_newFullname
+     * update user password
+     * @param string $_hashedPassword
      * @param string|int $_userId
      * @return array
      */
@@ -202,6 +202,52 @@ class Users
             $res['errors'][] = array(
                 'error' => $ERROR_CODES['USER_PROFILE']['UPDATE']['PASSWORD']['QUERY_FAILED_TRY_CATCH']['NAME'],
                 'errorCode' => $ERROR_CODES['USER_PROFILE']['UPDATE']['PASSWORD']['QUERY_FAILED_TRY_CATCH']['CODE'],
+            );
+        }
+
+        return $res;
+    }
+
+    /**
+     * update user Pin Code
+     * @param string|int $_newPinCode
+     * @param string|int $_userId
+     * @return array
+     */
+    public function update_pin_code(string|int $_newPinCode, string|int $_userId): array
+    {
+        global $conn;
+
+        $res = array(
+            'dataUpdated' => false,
+            'errors' => array(),
+        );
+
+        // sanitize data
+        $_newPinCode = strip_tags(htmlspecialchars(mysqli_real_escape_string($conn, $_newPinCode)));
+        $_userId = strip_tags(htmlspecialchars(mysqli_real_escape_string($conn, $_userId)));
+
+        try {
+            // update row
+            $query = "UPDATE users SET pin_code=? WHERE id=?";
+            $stmt = mysqli_prepare($conn, $query);
+            mysqli_stmt_bind_param($stmt, "si", $_newPinCode, $_userId);
+            mysqli_stmt_execute($stmt);
+
+            if (mysqli_stmt_errno($stmt) == 0) {
+                $res['dataUpdated'] = true;
+            } else {
+                $res['errors'][] = array(
+                    'error' => $ERROR_CODES['USER_PROFILE']['UPDATE']['PINCODE']['QUERY_FAILED']['NAME'],
+                    'errorCode' => $ERROR_CODES['USER_PROFILE']['UPDATE']['PINCODE']['QUERY_FAILED']['CODE'],
+                );
+            }
+            mysqli_stmt_close($stmt);
+        }
+        catch (Exception $e) {
+            $res['errors'][] = array(
+                'error' => $ERROR_CODES['USER_PROFILE']['UPDATE']['PINCODE']['QUERY_FAILED_TRY_CATCH']['NAME'],
+                'errorCode' => $ERROR_CODES['USER_PROFILE']['UPDATE']['PINCODE']['QUERY_FAILED_TRY_CATCH']['CODE'],
             );
         }
 

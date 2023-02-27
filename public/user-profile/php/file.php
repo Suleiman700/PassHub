@@ -8,6 +8,7 @@ require_once '../../../classes/authentication/Login.php';
 require_once '../../../classes/users/Users.php';
 require_once '../../../classes/users/UsersSettings.php';
 require_once '../../../settings/ERROR_CODES.php';
+require_once '../../../functions/validators/validate-pin-code.php';
 $Mail = new Mail();
 $Session = new Session();
 $Categories = new Categories();
@@ -279,8 +280,8 @@ if (isset($_POST['model']) && $_POST['model'] === 'performPasswordChange' && $se
 
                 // check if user enabled password change email alerts
                 if ($UsersSettings->is_password_change_alert_enabled($userData['data']['id'])) {
-                    // send login alert to user email
-                    $Mail->send_pasword_change_alert($userData['data']['email']);
+                    // send alert to user email
+                    $Mail->send_password_change_alert($userData['data']['email']);
                 }
 
                 $res['dataUpdated'] = $updateResults['dataUpdated'];
@@ -310,6 +311,97 @@ if (isset($_POST['model']) && $_POST['model'] === 'performPasswordChange' && $se
         $res['errors'][] = array(
             'error' => $ERROR_CODES['USER_PROFILE']['UPDATE']['PASSWORD']['VALIDATION']['ONE_OR_MORE_FIELDS_ARE_INVALID']['NAME'],
             'errorCode' => $ERROR_CODES['USER_PROFILE']['UPDATE']['PASSWORD']['VALIDATION']['ONE_OR_MORE_FIELDS_ARE_INVALID']['CODE'],
+        );
+    }
+
+    echo json_encode($res);
+}
+if (isset($_POST['model']) && $_POST['model'] === 'performPinCodeChange' && $session_isLogged) {
+    // this will reject request and return error message to user then do exit;
+    require_once '../../../functions/requests/reject-request-in-lock-mode.php';
+
+    // get user id from session
+    $session_userId = $Session->getSessionUserId();
+
+    $validNewPinCode = false;
+    $validPassword = false;
+
+    $res = array(
+        'dataUpdated' => false,
+        'errors' => array()
+    );
+
+    // check new Pin Code
+    if (isset($_POST['newPinCode']) && !empty($_POST['newPinCode'])) {
+        $validNewPinCode = true;
+    }
+    
+    // validate new Pin Code
+    if (isset($_POST['newPinCode']) && !validate_pin_code($_POST['newPinCode'])) {
+        $validNewPinCode = false;
+        // update flag
+        $res['dataUpdated'] = false;
+        // store error
+        $res['errors'][] = array(
+            'error' => $ERROR_CODES['USER_PROFILE']['UPDATE']['PINCODE']['VALIDATION']['PIN_CODE_SHOULD_BE_4_DIGITS']['NAME'],
+            'errorCode' => $ERROR_CODES['USER_PROFILE']['UPDATE']['PINCODE']['VALIDATION']['PIN_CODE_SHOULD_BE_4_DIGITS']['CODE'],
+        );
+        echo json_encode($res);
+        exit;
+    }
+
+    // check password
+    if (isset($_POST['password']) && !empty($_POST['password'])) {
+        $validPassword = true;
+    }
+
+    if ($validNewPinCode && $validPassword) {
+        // get user data
+        $userData = $Users->get_data_by_id($session_userId);
+
+        // check if user data found
+        if ($userData['state']) {
+            $Login->setPassword($_POST['password']);
+            $hashedPassword = $userData['data']['password'];
+
+            // matching password
+            if ($Login->verify_password_hash($hashedPassword)) {
+                // update Pin Code
+                $updateResults = $Users->update_pin_code($_POST['newPinCode'], $userData['data']['id']);
+
+                // check if user enabled Pin Code change email alerts
+                if ($UsersSettings->is_pin_code_change_alert_enabled($userData['data']['id'])) {
+                    // send alert to user email
+                    $Mail->send_pin_code_change_alert($userData['data']['email']);
+                }
+
+                $res['dataUpdated'] = $updateResults['dataUpdated'];
+                $res['errors'] = $updateResults['errors'];
+            }
+            // non-matching password
+            else {
+                $res['dataUpdated'] = false;
+                $res['errors'][] = array(
+                    'error' => $ERROR_CODES['USER_PROFILE']['UPDATE']['PINCODE']['VALIDATION']['INVALID_PASSWORD']['NAME'],
+                    'errorCode' => $ERROR_CODES['USER_PROFILE']['UPDATE']['PINCODE']['VALIDATION']['INVALID_PASSWORD']['CODE'],
+                );
+            }
+        }
+        // user data not found
+        else {
+            $res['dataUpdated'] = false;
+            $res['errors'][] = array(
+                'error' => $ERROR_CODES['USER_PROFILE']['UPDATE']['PINCODE']['VALIDATION']['USER_DATA']['NOT_FOUND']['NAME'],
+                'errorCode' => $ERROR_CODES['USER_PROFILE']['UPDATE']['PINCODE']['VALIDATION']['USER_DATA']['NOT_FOUND']['CODE'],
+            );
+        }
+    }
+    else {
+        $res['dataUpdated'] = false;
+        // store error
+        $res['errors'][] = array(
+            'error' => $ERROR_CODES['USER_PROFILE']['UPDATE']['PINCODE']['VALIDATION']['ONE_OR_MORE_FIELDS_ARE_INVALID']['NAME'],
+            'errorCode' => $ERROR_CODES['USER_PROFILE']['UPDATE']['PINCODE']['VALIDATION']['ONE_OR_MORE_FIELDS_ARE_INVALID']['CODE'],
         );
     }
 

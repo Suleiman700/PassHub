@@ -76,7 +76,7 @@ require_once '../../include/page-head.php';
                                     <ul class="nav nav-tabs border-tab" id="top-tab" role="tablist">
                                         <li class="nav-item"><a class="nav-link active" id="tab-fullname" data-bs-toggle="tab" href="#section-fullname" role="tab" aria-controls="section-fullname" aria-selected="true"><i class="icofont icofont-user"></i>Full Name</a></li>
                                         <li class="nav-item"><a class="nav-link" id="top-password-tab" data-bs-toggle="tab" href="#section-change-password" role="tab" aria-controls="#section-change-password" aria-selected="true"><i class="icofont icofont-key"></i>Password</a></li>
-                                        <li class="nav-item"><a class="nav-link" id="profile-top-tab" data-bs-toggle="tab" href="#top-profile" role="tab" aria-controls="top-profile" aria-selected="false"><i class="icofont icofont-pin"></i>Pin-Code</a></li>
+                                        <li class="nav-item"><a class="nav-link" id="profile-top-tab" data-bs-toggle="tab" href="#section-change-pin-code" role="tab" aria-controls="section-change-pin-code" aria-selected="false"><i class="icofont icofont-pin"></i>Pin-Code</a></li>
                                     </ul>
                                     <div class="tab-content" id="top-tabContent">
                                         <div class="tab-pane fade active show" id="section-fullname" role="tabpanel" aria-labelledby="top-fullname-tab">
@@ -112,15 +112,15 @@ require_once '../../include/page-head.php';
                                                 <div class="card-body">
                                                     <div class="theme-form">
                                                         <div class="mb-3">
-                                                            <label class="col-form-label pt-0" for="fullname">Original Password <code class="text-danger">*</code></label>
+                                                            <label class="col-form-label pt-0" for="original-password">Original Password <code class="text-danger">*</code></label>
                                                             <input type="password" class="form-control" id="original-password" value="" placeholder="Enter your account password">
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label class="col-form-label pt-0" for="password">New Password <code class="text-danger">*</code></label>
+                                                            <label class="col-form-label pt-0" for="new-password">New Password <code class="text-danger">*</code></label>
                                                             <input type="password" class="form-control" id="new-password" value="" placeholder="Enter your new password">
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label class="col-form-label pt-0" for="password">Confirm New Password <code class="text-danger">*</code></label>
+                                                            <label class="col-form-label pt-0" for="confirm-new-password">Confirm New Password <code class="text-danger">*</code></label>
                                                             <input type="password" class="form-control" id="confirm-new-password" value="" placeholder="Confirm your new password">
                                                         </div>
                                                     </div>
@@ -130,8 +130,28 @@ require_once '../../include/page-head.php';
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="tab-pane fade" id="top-profile" role="tabpanel" aria-labelledby="profile-top-tab">
-                                            <p>3</p>
+                                        <div class="tab-pane fade" id="section-change-pin-code" role="tabpanel" aria-labelledby="profile-top-tab">
+                                            <div class="row">
+                                                <div class="card-header pb-0">
+                                                    <h5>Change Your Pin Code</h5>
+                                                    <span>Change your account Pin Code.</span>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="theme-form">
+                                                        <div class="mb-3">
+                                                            <label class="col-form-label pt-0" for="new-pin-code">New Pin Code <code class="text-danger">*</code></label>
+                                                            <input type="text" class="form-control" id="new-pin-code" value="" placeholder="Enter your new Pin Code">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="col-form-label pt-0" for="password">Password <code class="text-danger">*</code></label>
+                                                            <input type="password" class="form-control" id="password" value="" placeholder="Enter your account password">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <button class="btn btn-primary" id="save"><i class="fa fa-save"></i> Save</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

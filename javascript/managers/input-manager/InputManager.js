@@ -30,6 +30,15 @@ export default class InputManager {
     }
 
     /**
+     * set input to accept digits only
+     */
+    setAcceptDigitsOnly() {
+        document.querySelector(`#${this.parentId} #${this.id}`).addEventListener('input', (event) => {
+            event.target.value = event.target.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');
+        })
+    }
+
+    /**
      * Clear the input value
      */
     valueClear() {

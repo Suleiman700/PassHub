@@ -282,7 +282,7 @@ class Mail
      * @return void
      * @throws \PHPMailer\PHPMailer\Exception
      */
-    public function send_pasword_change_alert(string $_recipientEmail): void
+    public function send_password_change_alert(string $_recipientEmail): void
     {
         global $conn;
         global $appName;
@@ -399,6 +399,128 @@ class Mail
         }
     }
 
+    /**
+     * send email to user saying that the account password has been changed
+     * @param string $_recipientEmail
+     * @return void
+     * @throws \PHPMailer\PHPMailer\Exception
+     */
+    public function send_pin_code_change_alert(string $_recipientEmail): void
+    {
+        global $conn;
+        global $appName;
+
+        // Recipient email address
+        $to = $_recipientEmail;
+
+        // Sender email address
+        $from = $this->smtp_username;
+
+        // Subject of the email
+        $subject = "Pin Code Change";
+
+        // Body of the email
+        $body = "
+            <html lang='en'><head>
+            <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+            <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+            <meta name='description' content='viho admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.'>
+            <meta name='keywords' content='admin template, viho admin template, dashboard template, flat admin template, responsive admin template, web app'>
+            <meta name='author' content='pixelstrap'>
+            <link rel='icon' href='../assets/images/favicon.png' type='image/x-icon'>
+            <link rel='shortcut icon' href='../assets/images/favicon.png' type='image/x-icon'>
+            <title>PassHub</title>
+            <link href='https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900' rel='stylesheet'>
+            <link href='https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i' rel='stylesheet'>
+            <link href='https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i' rel='stylesheet'>
+            <style>
+              body{
+              width: 650px;
+              font-family: work-Sans, sans-serif;
+              background-color: #f6f7fb;
+              display: block;
+              }
+              a{
+              text-decoration: none;
+              }
+              span {
+              font-size: 14px;
+              }
+              p {
+                  font-size: 13px;
+                 line-height: 1.7;
+                 letter-spacing: 0.7px;
+                 margin-top: 0;
+              }
+              .text-center{
+              text-align: center
+              }
+            </style>
+          </head>
+          <body style='margin: 30px auto;' data-new-gr-c-s-check-loaded='14.1097.0' data-gr-ext-installed=''>
+            <table style='width: 100%'>
+              <tbody>
+                <tr>
+                  <td>
+                    <table style='background-color: #f6f7fb; width: 100%'>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <table style='width: 650px; margin: 0 auto; background-color: #fff; border-radius: 8px'>
+                              <tbody>
+                                <tr>
+                                  <td style='padding: 30px'> 
+                                    <p>Dear User,</p>
+                                    <p>We wanted to alert you that your account Pin Code has been changed, If you did this you can safely ignore this email.</p>
+                                    <p>Here is the device information about this change:</p>
+                                    <ul>
+                                        <li>IP address: ".$_SERVER['REMOTE_ADDR']."</li>
+                                        <li>Date and time:: ".date('Y-m-d H:i:s')."</li>
+                                    </ul>
+                                    <p>However, if you did not authorize this change, we highly recommend that you take action to protect your account. Please log into your account and review your recent activity to make sure everything looks correct. If you see any unauthorized activity, please change your password immediately and contact our support team for further assistance.</p>
+                                    <p style='margin-bottom: 0'>Best regards,<br>PassHub</p>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </body></html>
+        ";
+
+        $mail = new PHPMailer\PHPMailer\PHPMailer();
+
+        $mail->SMTPDebug = 0; // Set to 2 to see more detailed debug output
+        $mail->isSMTP();
+        $mail->Host = $this->smtp_server;
+        $mail->SMTPAuth = $this->smtp_auth;
+        $mail->Username = $this->smtp_username;
+        $mail->Password = $this->smtp_password;
+        $mail->SMTPSecure = $this->smtp_secure;
+        $mail->Port = $this->smtp_port;
+
+        // Set the sender, recipient, subject, and body of the email
+        $mail->setFrom($from, $appName);
+        $mail->addAddress($to, 'Recipient Name');
+        $mail->Subject = $subject;
+        $mail->Body = $body;
+        $mail->isHTML(true);
+
+        // Send the email and check for errors
+        if (!$mail->send()) {
+//            echo "Error sending email: " . $mail->ErrorInfo;
+        } else {
+//            echo "Email sent successfully.";
+        }
+    }
 
     /**
      * send email to user saying that a incomplete login has been done while 2FA is enabled in user's account

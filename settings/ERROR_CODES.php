@@ -429,6 +429,48 @@ $ERROR_CODES = array(
                     "FIX" => "Check the SQL syntax, verify that all required data has been provided, and troubleshoot any connectivity issues."
                 ),
             ),
+            "PINCODE" => array(
+                "VALIDATION" => array(
+                    "ONE_OR_MORE_FIELDS_ARE_INVALID" => array(
+                        "NAME" => "One or more fields are invalid",
+                        "CODE" => "UUPCVO.1001",
+                        "CAUSE" => "One or more required fields are empty or not set",
+                        "FIX" => "Make sure to check the required fields and check if they are set properly"
+                    ),
+                    "USER_DATA" => array(
+                        "NOT_FOUND" => array(
+                            "NAME" => "No user data has been found",
+                            "CODE" => "UUPCVO.1002",
+                            "CAUSE" => "Found out that no user data has been found by session user id.",
+                            "FIX" => "Make sure that the user data exists in database by user id."
+                        )
+                    ),
+                    "INVALID_PASSWORD" => array(
+                        "NAME" => "Wrong password",
+                        "CODE" => "UUPCVI.1003",
+                        "CAUSE" => "Invalid password when comparing stored hashed password with request password",
+                        "FIX" => "Make sure that the request password matches stored hashed password."
+                    ),
+                    "PIN_CODE_SHOULD_BE_4_DIGITS" => array(
+                        "NAME" => "Pin Code should be 4 digits only",
+                        "CODE" => "UUPCPC.1004",
+                        "CAUSE" => "Pin Code Is invalid, It is required to be 4 digits only",
+                        "FIX" => "Make sure that the Pin Code is 4 digits only in the request data"
+                    ),
+                ),
+                "QUERY_FAILED" => array(
+                    "NAME" => "Error updating Pin Code",
+                    "CODE" => "UUPCQ.1001",
+                    "CAUSE" => "The query failed to execute properly. This could be due to a variety of reasons including incorrect SQL syntax, missing data, or connectivity issues.",
+                    "FIX" => "Check the SQL syntax, verify that all required data has been provided, and troubleshoot any connectivity issues."
+                ),
+                "QUERY_FAILED_TRY_CATCH" => array(
+                    "NAME" => "Error updating Pin Code",
+                    "CODE" => "UUPCQ.1002",
+                    "CAUSE" => "The query failed to execute properly. This could be due to a variety of reasons including incorrect SQL syntax, missing data, or connectivity issues.",
+                    "FIX" => "Check the SQL syntax, verify that all required data has been provided, and troubleshoot any connectivity issues."
+                ),
+            ),
         ),
     ),
 );

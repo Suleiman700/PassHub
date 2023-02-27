@@ -47,6 +47,20 @@ class UsersSettings
         return $result['enable_login_alerts'];
     }
 
+    public function is_password_change_alert_enabled(string|int $_userId): bool
+    {
+        global $conn;
+
+        // sanitize the email address
+        $_userId = strip_tags(htmlspecialchars(mysqli_real_escape_string($conn, $_userId)));
+
+        $query = "SELECT enable_password_change_alert FROM users_settings WHERE user_id = '$_userId'";
+        $stmt = mysqli_query($conn, $query);
+        $result = $stmt->fetch_assoc();
+
+        return $result['enable_password_change_alert'];
+    }
+
     public function is_2fa_enabled(string|int $_userId): bool
     {
         global $conn;

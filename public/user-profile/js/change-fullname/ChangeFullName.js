@@ -51,12 +51,21 @@ class ChangeFullName {
             inputPassword.markError(false)
         }
 
-        if (isValid || true) {
+        if (isValid) {
             // store data for request
             const data = {
                 fullName,
                 password
             }
+
+            // show loading
+            Swal.fire({
+                icon: 'info',
+                title: 'Please Wait',
+                html: '<i class="fa fa-spinner fa-spin"></i> Updating data...',
+                showConfirmButton: false,
+                allowOutsideClick: false
+            });
 
             // send request
             const response = await RequestPost.send('./php/file.php', data, 'performFullNameChange')
@@ -71,7 +80,7 @@ class ChangeFullName {
                 Swal.fire({
                     icon: 'success',
                     title: 'Yay!',
-                    html: 'Fullname has been updated successfully'
+                    html: 'Fullname has been changed successfully'
                 })
             }
             else {

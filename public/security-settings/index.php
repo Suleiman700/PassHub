@@ -68,7 +68,7 @@ require_once '../../include/page-head.php';
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <label for="staticEmail" class="col-form-label">Enable two-factor authentication</label><br>
-                                            <small>Enable Two-Factor Authentication when logging into your account.</small>
+                                            <small>Enable two-factor authentication when logging into your account.</small>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="checkbox checkbox-solid-primary">

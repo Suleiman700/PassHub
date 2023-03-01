@@ -49,6 +49,14 @@
                     </li>
                     <li class="dropdown"><a class="nav-link menu-title link-nav" href="../successful-logins/index.php"><i data-feather="list"></i><span>Successful Logins</span></a></li>
                     <li class="dropdown"><a class="nav-link menu-title link-nav" href="../failed-logins/index.php"><i data-feather="list"></i><span>Failed Logins</span></a></li>
+
+                    <li class="sidebar-main-title">
+                        <div>
+                            <h6>Settings</h6>
+                        </div>
+                    </li>
+                    <li class="dropdown"><a class="nav-link menu-title link-nav" href="../user-profile/index.php"><i data-feather="list"></i><span>User Profile</span></a></li>
+                    <li class="dropdown"><a class="nav-link menu-title link-nav" href="../security-settings/index.php"><i data-feather="list"></i><span>Security Settings</span></a></li>
                 </ul>
             </div>
             <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>

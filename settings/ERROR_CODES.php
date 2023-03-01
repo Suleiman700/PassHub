@@ -473,4 +473,20 @@ $ERROR_CODES = array(
             ),
         ),
     ),
+    "USER_SETTINGS" => array(
+        "UPDATE" => array(
+            "QUERY_FAILED" => array(
+                "NAME" => "Error updating fullname",
+                "CODE" => "UUQ.1001",
+                "CAUSE" => "The query failed to execute properly. This could be due to a variety of reasons including incorrect SQL syntax, missing data, or connectivity issues.",
+                "FIX" => "Check the SQL syntax, verify that all required data has been provided, and troubleshoot any connectivity issues."
+            ),
+            "QUERY_FAILED_TRY_CATCH" => array(
+                "NAME" => "Error updating fullname",
+                "CODE" => "UUQ.1002",
+                "CAUSE" => "The query failed to execute properly. This could be due to a variety of reasons including incorrect SQL syntax, missing data, or connectivity issues.",
+                "FIX" => "Check the SQL syntax, verify that all required data has been provided, and troubleshoot any connectivity issues."
+            ),
+        ),
+    ),
 );

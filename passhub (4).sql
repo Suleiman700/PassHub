@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 20, 2023 at 12:38 AM
+-- Generation Time: Mar 01, 2023 at 09:49 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -60,6 +60,19 @@ CREATE TABLE `failed_logins` (
   `user_agent` text DEFAULT NULL,
   `login_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `failed_logins`
+--
+
+INSERT INTO `failed_logins` (`id`, `user_id`, `used_password`, `used_pin_code`, `fail_reason`, `ip_address`, `user_agent`, `login_time`) VALUES
+(35, 0, '1234', '1233', 'Invalid pin code', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36', '2023-02-24 13:34:33'),
+(36, 0, '1234', '1233', 'Invalid pin code', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36', '2023-02-24 13:44:29'),
+(37, 0, '1234', '1233', 'Invalid pin code', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36', '2023-02-24 16:12:37'),
+(38, 0, '1234', '1234', 'Invalid password', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36', '2023-02-27 18:54:02'),
+(39, 0, '123', '1234', 'Invalid password', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36', '2023-02-27 18:56:16'),
+(40, 0, '123', '1234', 'Invalid password', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36', '2023-02-27 18:57:38'),
+(41, 0, '1234', '1234', 'Invalid pin code', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36', '2023-02-27 19:45:30');
 
 -- --------------------------------------------------------
 
@@ -131,7 +144,20 @@ CREATE TABLE `successful_logins` (
 --
 
 INSERT INTO `successful_logins` (`id`, `user_id`, `login_time`, `ip_address`, `user_agent`) VALUES
-(41, 0, '2023-02-19 23:25:37', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36');
+(41, 0, '2023-02-19 23:25:37', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'),
+(42, 0, '2023-02-20 18:35:29', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'),
+(43, 0, '2023-02-24 13:46:01', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'),
+(44, 0, '2023-02-24 13:53:34', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'),
+(45, 0, '2023-02-24 16:12:40', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'),
+(46, 0, '2023-02-24 16:16:12', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'),
+(47, 0, '2023-02-26 22:08:52', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'),
+(48, 0, '2023-02-27 18:33:20', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'),
+(49, 0, '2023-02-27 18:54:26', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'),
+(50, 0, '2023-02-27 18:56:18', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'),
+(51, 0, '2023-02-27 18:57:40', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'),
+(52, 0, '2023-02-27 19:43:07', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'),
+(53, 0, '2023-02-27 19:45:32', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'),
+(54, 0, '2023-03-01 20:05:34', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36');
 
 -- --------------------------------------------------------
 
@@ -183,17 +209,19 @@ INSERT INTO `users_keys` (`id`, `user_id`, `secret_key`, `secret_iv`) VALUES
 CREATE TABLE `users_settings` (
   `id` smallint(6) NOT NULL,
   `user_id` smallint(6) DEFAULT NULL,
-  `enable_2fa` char(1) DEFAULT NULL,
+  `enable_2fa` char(1) DEFAULT '0',
   `twofactor_code` char(6) DEFAULT NULL,
-  `enable_login_alerts` char(1) DEFAULT NULL
+  `enable_login_alerts` char(1) DEFAULT '0',
+  `enable_password_change_alert` char(1) DEFAULT '0',
+  `enabled_pin_code_change_alert` char(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `users_settings`
 --
 
-INSERT INTO `users_settings` (`id`, `user_id`, `enable_2fa`, `twofactor_code`, `enable_login_alerts`) VALUES
-(0, 0, '1', '596790', '1');
+INSERT INTO `users_settings` (`id`, `user_id`, `enable_2fa`, `twofactor_code`, `enable_login_alerts`, `enable_password_change_alert`, `enabled_pin_code_change_alert`) VALUES
+(0, 0, '1', '877158', '1', '1', '1');
 
 --
 -- Indexes for dumped tables
@@ -262,7 +290,7 @@ ALTER TABLE `users_settings`
 -- AUTO_INCREMENT for table `failed_logins`
 --
 ALTER TABLE `failed_logins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `smtp_settings`
@@ -274,7 +302,7 @@ ALTER TABLE `smtp_settings`
 -- AUTO_INCREMENT for table `successful_logins`
 --
 ALTER TABLE `successful_logins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- Constraints for dumped tables

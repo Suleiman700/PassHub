@@ -33,6 +33,61 @@ class UsersSettings
         return $res;
     }
 
+    /**
+     * update user settings
+     * @param array $_newSettingsData
+     * @param string|int $_userId
+     * @return array
+     */
+    public function update_user_settings(array $_newSettingsData, string|int $_userId): array
+    {
+        global $conn;
+        global $ERROR_CODES;
+
+        $res = array(
+            'dataUpdated' => false,
+            'errors' => array()
+        );
+
+        // sanitize data
+        $enable2FA = strip_tags(htmlspecialchars(mysqli_real_escape_string($conn, $_newSettingsData['enable2FA'])));
+        $enableLoginAlerts = strip_tags(htmlspecialchars(mysqli_real_escape_string($conn, $_newSettingsData['enableLoginAlerts'])));
+        $enablePasswordChangeAlerts = strip_tags(htmlspecialchars(mysqli_real_escape_string($conn, $_newSettingsData['enablePasswordChangeAlerts'])));
+        $enablePinCodeChangeAlerts = strip_tags(htmlspecialchars(mysqli_real_escape_string($conn, $_newSettingsData['enablePinCodeChangeAlerts'])));
+
+        // convert boolean (true/false) to char (0/1)
+        $enable2FA = filter_var($enable2FA, FILTER_VALIDATE_BOOLEAN) ?'1':'0';
+        $enableLoginAlerts = filter_var($enableLoginAlerts, FILTER_VALIDATE_BOOLEAN) ?'1':'0';
+        $enablePasswordChangeAlerts = filter_var($enablePasswordChangeAlerts, FILTER_VALIDATE_BOOLEAN) ?'1':'0';
+        $enablePinCodeChangeAlerts = filter_var($enablePinCodeChangeAlerts, FILTER_VALIDATE_BOOLEAN) ?'1':'0';
+
+        try {
+            // update row
+            $query = "UPDATE users_settings SET enable_2fa=?, enable_login_alerts=?, enable_password_change_alert=?, enabled_pin_code_change_alert=? WHERE user_id=?";
+            $stmt = mysqli_prepare($conn, $query);
+            mysqli_stmt_bind_param($stmt, "ssssi", $enable2FA, $enableLoginAlerts, $enablePasswordChangeAlerts, $enablePinCodeChangeAlerts, $_userId);
+            mysqli_stmt_execute($stmt);
+
+            if (mysqli_stmt_errno($stmt) == 0) {
+                $res['dataUpdated'] = true;
+            } else {
+                $res['errors'][] = array(
+                    'error' => $ERROR_CODES['USER_SETTINGS']['UPDATE']['QUERY_FAILED']['NAME'],
+                    'errorCode' => $ERROR_CODES['USER_SETTINGS']['UPDATE']['QUERY_FAILED']['CODE'],
+                );
+            }
+            mysqli_stmt_close($stmt);
+        }
+        catch (Exception $e) {
+            $res['errors'][] = array(
+                'error' => $ERROR_CODES['USER_SETTINGS']['UPDATE']['QUERY_FAILED_TRY_CATCH']['NAME'],
+                'errorCode' => $ERROR_CODES['USER_SETTINGS']['UPDATE']['QUERY_FAILED_TRY_CATCH']['CODE'],
+            );
+        }
+
+        return $res;
+    }
+
     public function is_login_alerts_enabled(string|int $_userId): bool
     {
         global $conn;

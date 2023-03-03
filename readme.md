@@ -11,6 +11,12 @@ A passwords management system in php.
 * `Lock Mode` - Enter lock mode to secure your account.
 * `Alerts` - Receive alert via mail.
 
+### Usage:
+1. Download project.
+2. Create MySql database names `passhub`.
+3. import the `.sql` to that created database.
+4. Open `settings/db.php` and enter your DB connection settings.
+
 ---
 
 ## Screenshots

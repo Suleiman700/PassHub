@@ -1,17 +1,21 @@
 <?php
-require_once '../../settings/config.php';
-require_once '../../classes/authentication/Session.php';
-$pageTitle = "Login | $appName";
 
+header('Location: ../login/index.php');
+exit;
+
+//require_once '../../settings/config.php';
+//require_once '../../classes/authentication/Session.php';
+//$pageTitle = "Forgot Password | $appName";
+//
 // redirect logged-in users to dashboard
-$Session = new Session();
-if ($Session->isLogged()) {
-    header('Location: ../dashboard/index.php');
-    exit;
-}
-else {
-    $Session->destory_logged_session();
-}
+//$Session = new Session();
+//if ($Session->isLogged()) {
+//    header('Location: ../dashboard/index.php');
+//    exit;
+//}
+//else {
+//    $Session->destory_logged_session();
+//}
 ?>
 
 <!DOCTYPE html>
@@ -72,7 +76,7 @@ require_once '../../include/page-head.php';
                             <div class="checkbox">
                                 <input id="checkbox1" type="checkbox">
                                 <label for="checkbox1">Remember password</label>
-                            </div><a class="link" href="../forgot-password/index.php">Forgot password?</a>
+                            </div><a class="link" href="forget-password.html">Forgot password?</a>
                         </div>
                         <div class="form-group">
                             <button type="button" class="btn btn-primary btn-block" id="login">Sign in</button>

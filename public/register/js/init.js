@@ -6,3 +6,7 @@ import inputPinCode from './inputs/input-pin-code.js';
 
 // buttons
 import buttonRegister from './buttons/button-register.js';
+
+$('.loader-wrapper').fadeOut('fast', function() {
+    $(this).remove();
+});

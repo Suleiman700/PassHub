@@ -88,16 +88,19 @@ class Users
         $result = mysqli_query($conn, $query);
 
         if (isset($result) && $result === true) {
-            // generate new row id
-            $new_key = $Generators->gen_table_primary_key('users_keys');
-
             // generate random key and iv
             $encryptionKeys = $Encryption->gen_random_encryption_keys();
             $key = $encryptionKeys['key'];
             $iv = $encryptionKeys['iv'];
 
             // insert key and iv into users_keys table
+            $new_key = $Generators->gen_table_primary_key('users_keys');
             $query = "INSERT INTO users_keys (id, user_id, secret_key, secret_iv) VALUES ($new_key, $userId, '$key', '$iv')";
+            $result = mysqli_query($conn, $query);
+
+            // insert key and iv into users_keys table
+            $new_key = $Generators->gen_table_primary_key('users_settings');
+            $query = "INSERT INTO users_settings (id, user_id, enable_2fa, twofactor_code, enable_login_alerts, enable_password_change_alert, enabled_pin_code_change_alert, password_reset_token) VALUES ($new_key, '$userId', '0', '0', '0', '0', '0', '0')";
             $result = mysqli_query($conn, $query);
 
             if (isset($result) && $result === true) {

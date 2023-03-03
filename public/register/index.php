@@ -40,31 +40,28 @@ require_once '../../include/page-head.php';
                         <div class="form-group">
                             <label>Full Name</label>
                             <div class="input-group"><span class="input-group-text">
-                                <i class="icon-user"></i></span>
+                                <i class="fa fa-user"></i></span>
                                 <input type="text" class="form-control" id="fullname" required="" placeholder="John Doe">
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Email Address</label>
                             <div class="input-group"><span class="input-group-text">
-                                <i class="icon-email"></i></span>
+                                <i class="fa fa-at"></i></span>
                                 <input type="email" class="form-control" id="email" required="" placeholder="Test@gmail.com">
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Password</label>
                             <div class="input-group"><span class="input-group-text">
-                                <i class="icon-lock"></i></span>
+                                <i class="fa fa-key"></i></span>
                                 <input type="password"class="form-control" id="password" required="" placeholder="*********">
-                                <div class="show-hide">
-                                    <span class="show"></span>
-                                </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>PIN Code</label>
                             <div class="input-group">
-                                <span class="input-group-text"><i class="icon-key"></i></span>
+                                <span class="input-group-text"><i class="fa fa-map-pin"></i></span>
                                 <input type="text" class="form-control" id="pin-code" required="" placeholder="1234">
                                 <span class="input-group-text fa fa-info" data-bs-toggle="tooltip" data-bs-placement="top" title="PIN Code adds another security layer to your account"></span>
                             </div>
@@ -85,7 +82,7 @@ require_once '../../include/page-head.php';
 <?php
 require_once '../../include/page-footer.php';
 ?>
-<script src="../../assets/js/tooltip-init.js"></script>
+<script src="../../assets/js/tooltip.js"></script>
 <script src="./js/init.js" type="module"></script>
 </body>
 </html>

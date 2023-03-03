@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 01, 2023 at 09:49 PM
+-- Generation Time: Mar 03, 2023 at 04:05 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -35,15 +35,6 @@ CREATE TABLE `categories` (
   `color` char(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `categories`
---
-
-INSERT INTO `categories` (`id`, `user_id`, `name`, `description`, `color`) VALUES
-(0, 0, 'Friends', 'Friends passwords', '#39cdfe'),
-(1, 0, 'Family', 'Family passwords', '#ff0000'),
-(2, 0, 'Personal Social', 'Personal social passwords', '#ff9494');
-
 -- --------------------------------------------------------
 
 --
@@ -60,19 +51,6 @@ CREATE TABLE `failed_logins` (
   `user_agent` text DEFAULT NULL,
   `login_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `failed_logins`
---
-
-INSERT INTO `failed_logins` (`id`, `user_id`, `used_password`, `used_pin_code`, `fail_reason`, `ip_address`, `user_agent`, `login_time`) VALUES
-(35, 0, '1234', '1233', 'Invalid pin code', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36', '2023-02-24 13:34:33'),
-(36, 0, '1234', '1233', 'Invalid pin code', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36', '2023-02-24 13:44:29'),
-(37, 0, '1234', '1233', 'Invalid pin code', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36', '2023-02-24 16:12:37'),
-(38, 0, '1234', '1234', 'Invalid password', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36', '2023-02-27 18:54:02'),
-(39, 0, '123', '1234', 'Invalid password', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36', '2023-02-27 18:56:16'),
-(40, 0, '123', '1234', 'Invalid password', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36', '2023-02-27 18:57:38'),
-(41, 0, '1234', '1234', 'Invalid pin code', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36', '2023-02-27 19:45:30');
 
 -- --------------------------------------------------------
 
@@ -92,15 +70,6 @@ CREATE TABLE `passwords` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `passwords`
---
-
-INSERT INTO `passwords` (`id`, `user_id`, `category_id`, `username`, `password`, `website`, `description`, `note`, `created_at`, `updated_at`) VALUES
-(0, 0, 0, 'jhad facebook 2fa backup codes', 'yd4lhNnyRTMKDqH6onJdxSPSBK4/JOPp22k8o0nJbV4=', 'https://facebook.com/', 'jhad facebook 2fa backup codes', '00543125\\n12310948\\n30074240\\n31307317\\n42053022\\n47403520\\n52299222\\n55068670\\n67673043\\n85074813', '2023-02-12 22:25:55', '2023-02-12 23:22:16'),
-(1, 0, 1, 'soleman167@gmail.com', '9rPcj5Hff7NYwssHqVuquIKGJlZt5ri3EpkR5WWm8cI=', 'https://facebook.com/', 'Father facebook', '', '2023-02-12 23:22:46', '2023-02-12 23:24:15'),
-(2, 0, 2, 'xapigun@zdfpost.net', '4X20q1N2PWuqLJg50Sa6TQ==', 'https://facebook.com/', 'Marah Hijazi Facebook', '', '2023-02-14 20:31:42', '2023-02-14 20:31:42');
 
 -- --------------------------------------------------------
 
@@ -123,7 +92,7 @@ CREATE TABLE `smtp_settings` (
 --
 
 INSERT INTO `smtp_settings` (`id`, `smtp_server`, `smtp_username`, `smtp_password`, `smtp_auth`, `smtp_secure`, `smtp_port`) VALUES
-(1, 'smtp.hostinger.com', 'passhub@nicurb.com', 'A4%stP72Uu31', 'true', 'tls', 587);
+(1, 'smtp host', 'username', 'password', 'true', 'tls', 587);
 
 -- --------------------------------------------------------
 
@@ -138,26 +107,6 @@ CREATE TABLE `successful_logins` (
   `ip_address` char(100) NOT NULL,
   `user_agent` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `successful_logins`
---
-
-INSERT INTO `successful_logins` (`id`, `user_id`, `login_time`, `ip_address`, `user_agent`) VALUES
-(41, 0, '2023-02-19 23:25:37', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'),
-(42, 0, '2023-02-20 18:35:29', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'),
-(43, 0, '2023-02-24 13:46:01', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'),
-(44, 0, '2023-02-24 13:53:34', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'),
-(45, 0, '2023-02-24 16:12:40', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'),
-(46, 0, '2023-02-24 16:16:12', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'),
-(47, 0, '2023-02-26 22:08:52', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'),
-(48, 0, '2023-02-27 18:33:20', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'),
-(49, 0, '2023-02-27 18:54:26', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'),
-(50, 0, '2023-02-27 18:56:18', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'),
-(51, 0, '2023-02-27 18:57:40', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'),
-(52, 0, '2023-02-27 19:43:07', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'),
-(53, 0, '2023-02-27 19:45:32', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'),
-(54, 0, '2023-03-01 20:05:34', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36');
 
 -- --------------------------------------------------------
 
@@ -178,7 +127,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `fullname`, `email`, `password`, `pin_code`) VALUES
-(0, 'Jaber Suleiman', 'soleman630@gmail.com', '$2y$10$cA0e8HLCRfVu7e1yZlyz2u7ceV38w.RcKNqOqoxn5EmPnVYFT8CTq', '1234');
+(0, 'PassHub User', 'passhub-user@gmail.com', '$2y$10$ZX0E2oIWhjlNk4SdommRaeeCBYcyG/KX35G9lxNEb4ylYHN47ZFnG', '1234');
 
 -- --------------------------------------------------------
 
@@ -198,7 +147,7 @@ CREATE TABLE `users_keys` (
 --
 
 INSERT INTO `users_keys` (`id`, `user_id`, `secret_key`, `secret_iv`) VALUES
-(0, 0, 'YSvaZKQdbzljPzeWVE2qYnrDcdOVprg53yYgYzHbbqo=', '855sOQEHTbjWV3g79YMz0w==');
+(0, 0, '2BYnTp831G6P7owJDmPsjr8jYPUWT251/xC9FOR6A0E=', 'MPn/GXmd0aKKAxD+9gC4Ng==');
 
 -- --------------------------------------------------------
 
@@ -213,15 +162,16 @@ CREATE TABLE `users_settings` (
   `twofactor_code` char(6) DEFAULT NULL,
   `enable_login_alerts` char(1) DEFAULT '0',
   `enable_password_change_alert` char(1) DEFAULT '0',
-  `enabled_pin_code_change_alert` char(1) DEFAULT '0'
+  `enabled_pin_code_change_alert` char(1) DEFAULT '0',
+  `password_reset_token` char(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `users_settings`
 --
 
-INSERT INTO `users_settings` (`id`, `user_id`, `enable_2fa`, `twofactor_code`, `enable_login_alerts`, `enable_password_change_alert`, `enabled_pin_code_change_alert`) VALUES
-(0, 0, '1', '877158', '1', '1', '1');
+INSERT INTO `users_settings` (`id`, `user_id`, `enable_2fa`, `twofactor_code`, `enable_login_alerts`, `enable_password_change_alert`, `enabled_pin_code_change_alert`, `password_reset_token`) VALUES
+(0, 0, '0', '0', '0', '0', '0', '0');
 
 --
 -- Indexes for dumped tables
@@ -302,7 +252,7 @@ ALTER TABLE `smtp_settings`
 -- AUTO_INCREMENT for table `successful_logins`
 --
 ALTER TABLE `successful_logins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- Constraints for dumped tables
@@ -312,13 +262,13 @@ ALTER TABLE `successful_logins`
 -- Constraints for table `categories`
 --
 ALTER TABLE `categories`
-  ADD CONSTRAINT `categories_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `categories_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `failed_logins`
 --
 ALTER TABLE `failed_logins`
-  ADD CONSTRAINT `failed_logins_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `failed_logins_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `passwords`
@@ -331,7 +281,7 @@ ALTER TABLE `passwords`
 -- Constraints for table `successful_logins`
 --
 ALTER TABLE `successful_logins`
-  ADD CONSTRAINT `successful_logins_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `successful_logins_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `users_keys`

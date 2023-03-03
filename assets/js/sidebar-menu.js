@@ -14,7 +14,7 @@
         $(".page-wrapper").addClass("compact-wrapper");
     }   
 
-  // left sidebar and horizotal menu
+  // left sidebar and horizontal menu
     if($('#pageWrapper').hasClass('compact-wrapper')){
           jQuery('.submenu-title').append('<div class="according-menu"><i class="fa fa-angle-right"></i></div>');
           jQuery('.submenu-title').click(function () {
@@ -220,6 +220,3 @@ $("#left-arrow").click(function () {
             }
         }
     });
-    $('.custom-scrollbar').animate({
-        scrollTop: $('a.nav-link.menu-title.active').offset().top - 500
-    }, 1000);

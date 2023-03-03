@@ -9,7 +9,7 @@ class CopyToClipboard {
         navigator.clipboard.writeText(_textToCopy).then(function() {
             $.notify(
                 {
-                    message: '<i class="fa fa-clipboard"></i>Copied To Clipboard'
+                    message: 'Copied To Clipboard'
                 },
                 {
                     type:'primary',

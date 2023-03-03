@@ -63,7 +63,7 @@ if (!$Session->inLockMode()) {
     <div class="container-fluid p-0">
         <div class="comingsoon">
             <div class="comingsoon-inner text-center">
-                <a href="javascript:void(0)"><img src="../../assets/images/logo/logo-1.png" alt=""></a>
+                <a href="javascript:void(0)"><img src="../../assets/images/logo/logo.png" alt="" width="20%"></a>
                 <h2 class="pt-3">Lock Mode</h2>
                 <div class="row d-flex justify-content-center">
                     <h5 class="col-sm-12 col-md-6 text-warning" id="message"></h5>
@@ -119,7 +119,7 @@ if (!$Session->inLockMode()) {
 
 <!-- page-wrapper end-->
 <!-- latest jquery-->
-<script src="../../assets/js/jquery-3.5.1.min.js"></script>
+<script src="../../assets/libs/jquery/jquery-3.5.1.min.js"></script>
 <!-- Bootstrap js-->
 <script src="../../assets/js/bootstrap/popper.min.js"></script>
 <script src="../../assets/js/bootstrap/bootstrap.min.js"></script>

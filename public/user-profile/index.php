@@ -57,7 +57,7 @@ require_once '../../include/page-head.php';
                                         <div class="row mb-2">
                                             <div class="profile-title">
                                                 <div class="media">
-                                                    <img class="img-70 rounded-circle" alt="" src="../../assets/images/dashboard/1.png">
+                                                    <img class="img-70 rounded-circle" src="../../assets/images/user/user.png" alt="">
                                                     <div class="media-body">
                                                         <h3 class="mb-1 f-20 txt-primary" id="label_fullname"><?php echo $session_username; ?></h3>
                                                         <p class="f-12">MEMBER</p>

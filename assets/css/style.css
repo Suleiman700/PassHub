@@ -26159,11 +26159,11 @@ body.dark-sidebar .main-navbar ul.nav-pills {
   margin: 35px auto; }
 
 .profile-greeting {
-  background-image: url(../images/dashboard/bg.jpg);
   background-size: cover !important;
   background-repeat: no-repeat;
   background-position: center center;
-  position: relative; }
+  position: relative;
+}
 
 .chart_data_left .card-body .chart-main .media .hospital-small-chart, .chart_data_right .card-body .chart-main .media .hospital-small-chart {
   -webkit-box-align: center;

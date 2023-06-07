@@ -13,7 +13,7 @@ import inputPasswordNote from './inputs/input-password-note.js';
 import buttonSubmit from './buttons/button-submit.js';
 import ButtonCancel from './buttons/button-cancel.js';
 
-import RequestPost from '/javascript/requests/RequestPost.js';
+import RequestPost from '../../../javascript/requests/RequestPost.js';
 
 class Save {
     constructor() {}

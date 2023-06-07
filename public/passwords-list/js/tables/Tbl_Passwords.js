@@ -1,5 +1,5 @@
 
-import CopyToClipboard from '/javascript/helpers/CopyToClipboard.js';
+import CopyToClipboard from '../../../../javascript/helpers/CopyToClipboard.js';
 
 class Tbl_Passwords {
     constructor() {

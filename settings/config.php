@@ -1,4 +1,4 @@
 <?php
 
 $appName = 'PassHub';
-$baseUrl = '';
+$baseUrl = 'C:/xampp/htdocs/PassHub';

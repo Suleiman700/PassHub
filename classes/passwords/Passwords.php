@@ -1,9 +1,9 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/classes/helpers/Generators.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/classes/helpers/Encryption.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/classes/users/Users.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/settings/ERROR_CODES.php';
+require_once $baseUrl.'/classes/helpers/Generators.php';
+require_once $baseUrl.'/classes/helpers/Encryption.php';
+require_once $baseUrl.'/classes/users/Users.php';
+require_once $baseUrl.'/settings/ERROR_CODES.php';
 
 class Passwords
 {

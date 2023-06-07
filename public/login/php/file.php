@@ -1,6 +1,7 @@
 <?php
 
 if (isset($_POST['model']) && $_POST['model'] === 'performLogin') {
+    require_once '../../../settings/config.php';
     require_once '../../../classes/mail/Mail.php';
     require_once '../../../classes/authentication/Session.php';
     require_once '../../../classes/authentication/Login.php';

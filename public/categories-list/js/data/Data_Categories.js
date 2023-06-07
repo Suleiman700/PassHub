@@ -1,5 +1,5 @@
 
-import RequestGet from '/javascript/requests/RequestGet.js';
+import RequestGet from '../../../../javascript/requests/RequestGet.js';
 
 class Data_Categories {
     #categories = []

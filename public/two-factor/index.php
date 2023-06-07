@@ -123,7 +123,7 @@ if (!$Session->in2FAMode()) {
 <!-- Plugins JS start-->
 <!-- Plugins JS Ends-->
 <!-- Theme js-->
-<script src="../../assets/js/script.js"></script>
+<script src="../../assets/js/script.js" type="module"></script>
 <!-- Plugin used-->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../../assets/libs/sweetalert/sweetalert2_11.7.1.js"></script>

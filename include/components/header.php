@@ -58,7 +58,7 @@ $count_passwords = $Passwords->count_user_passwords($session_userId);
                 <li><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize"></i></a></li>
                 <li><a class="text-dark" href="#!" onclick="javascript:enterLockMode()"><i data-feather="lock"></i></a></li>
                 <li>
-                    <div class="mode" style="cursor: pointer;"><i class="fa fa-circle-half-stroke"></i></div>
+                    <div class="light-mode" style="cursor: pointer;"><i class="fa fa-circle-half-stroke"></i></div>
                 </li>
                 <li class="onhover-dropdown p-0">
                     <button class="btn btn-primary-light" type="button"><a href="../logout.php"><i data-feather="log-out"></i>Log out</a></button>
@@ -78,11 +78,11 @@ $count_passwords = $Passwords->count_user_passwords($session_userId);
 </script>
 
 <script type="module">
-    import EncryptionService from '/javascript/security/EncryptionService.js';
+    import EncryptionService from '../../javascript/security/EncryptionService.js';
     const encryptionService = new EncryptionService()
     const encryptedMessage = await encryptionService.encryptMessage(`For your security, we've activated a lock mode due to inactivity. Please re-enter your credentials to resume using the site. This helps to prevent unauthorized access and ensure that your personal information remains protected.`);
 
     // inactivity lock
-    import InactivityLock from '/javascript/security/InactivityLock.js';
+    import InactivityLock from '../../javascript/security/InactivityLock.js';
     InactivityLock.setMessage(encryptedMessage)
 </script>

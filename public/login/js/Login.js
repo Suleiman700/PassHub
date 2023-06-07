@@ -10,11 +10,11 @@ import buttonLogin from './buttons/button-login.js';
 import alert from './alerts/alert.js';
 
 // validators
-import EmailValidator from '/javascript/validators/EmailValidator.js';
-import PinCodeValidator from '/javascript/validators/PinCodeValidator.js';
+import EmailValidator from '../../../javascript/validators/EmailValidator.js';
+import PinCodeValidator from '../../../javascript/validators/PinCodeValidator.js';
 
 // requests
-import RequestPost from '/javascript/requests/RequestPost.js';
+import RequestPost from '../../../javascript/requests/RequestPost.js';
 
 
 
@@ -97,7 +97,7 @@ class Login {
                     window.location.replace('../two-factor/index.php');
                 }
                 else {
-                    window.location.replace('../dashboard/index.php');
+                    window.location.replace('../categories-list/index.php');
                 }
             }
             // unsuccessful request

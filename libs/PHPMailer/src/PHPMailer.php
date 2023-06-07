@@ -1508,6 +1508,12 @@ class PHPMailer
      */
     public function send()
     {
+        // Establish SMTP connection
+        if (!$this->smtpConnect()) {
+            echo 'SMTP connection failed.';
+            die;
+        }
+
         try {
             if (!$this->preSend()) {
                 return false;

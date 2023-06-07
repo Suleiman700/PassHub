@@ -3,6 +3,7 @@
 // this will reject request and return error message to user then do exit;
 require_once '../../../functions/requests/reject-request-in-lock-mode.php';
 
+require_once '../../../settings/config.php';
 require_once '../../../classes/authentication/Session.php';
 require_once '../../../classes/categories/Categories.php';
 require_once '../../../settings/ERROR_CODES.php';

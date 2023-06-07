@@ -3,7 +3,7 @@
     This class is used to enter Lock Mode when user in inactive for a specific time
  */
 
-import EncryptionService from '/javascript/security/EncryptionService.js';
+import EncryptionService from '../../javascript/security/EncryptionService.js';
 
 class InactivityLock {
     INACTIVITY_TIME_LIMIT = 600000 // 10 minutes

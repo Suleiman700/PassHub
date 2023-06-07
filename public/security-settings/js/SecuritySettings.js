@@ -3,7 +3,7 @@
 import buttonSave from './buttons/button-save.js';
 
 // requests
-import RequestPost from '/javascript/requests/RequestPost.js';
+import RequestPost from '../../../javascript/requests/RequestPost.js';
 
 class SecuritySettings {
     constructor() {}

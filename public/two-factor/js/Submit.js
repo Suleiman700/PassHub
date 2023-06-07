@@ -42,7 +42,7 @@ class Submit{
                 allowOutsideClick: false,
                 confirmButtonText: 'Ok'
             }).then(function() {
-                window.location = '../dashboard/index.php';
+                window.location = '../categories-list/index.php';
             });
         }
         else {

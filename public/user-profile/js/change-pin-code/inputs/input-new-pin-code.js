@@ -1,4 +1,4 @@
-import InputManager from "/javascript/managers/input-manager/InputManager.js";
+import InputManager from "../../../../../javascript/managers/input-manager/InputManager.js";
 
 const inputNewPinCode = new InputManager('section-change-pin-code', 'new-pin-code')
 

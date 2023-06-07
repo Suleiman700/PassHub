@@ -1,5 +1,7 @@
 <?php
 
+require_once '../../../settings/config.php';
+
 // this will reject request and return error message to user then do exit;
 require_once '../../../functions/requests/reject-request-in-lock-mode.php';
 

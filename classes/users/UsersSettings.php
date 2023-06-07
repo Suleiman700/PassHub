@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/settings/db.php';
+require_once $baseUrl.'/settings/db.php';
 
 class UsersSettings
 {

@@ -1,4 +1,4 @@
-import ButtonManager from '/javascript/managers/button-manager/ButtonManager.js';
+import ButtonManager from '../../../../javascript/managers/button-manager/ButtonManager.js';
 
 import Modal_DeleteCategory from '../modals/Modal_DeleteCategory.js';
 

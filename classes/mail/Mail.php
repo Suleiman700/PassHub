@@ -1,12 +1,12 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/settings/db.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/settings/config.php';
+require_once $baseUrl.'/settings/db.php';
+require_once $baseUrl.'/settings/config.php';
 
 // Set up the PHPMailer object
-require_once $_SERVER['DOCUMENT_ROOT'].'/libs/PHPMailer/src/PHPMailer.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/libs/PHPMailer/src/SMTP.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/libs/PHPMailer/src/Exception.php';
+require_once $baseUrl.'/libs/PHPMailer/src/PHPMailer.php';
+require_once $baseUrl.'/libs/PHPMailer/src/SMTP.php';
+require_once $baseUrl.'/libs/PHPMailer/src/Exception.php';
 
 class Mail
 {

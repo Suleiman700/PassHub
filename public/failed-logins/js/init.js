@@ -32,6 +32,6 @@ async function prepareCategoriesTable() {
 
 await prepareCategoriesTable()
 
-$('.loader-wrapper').fadeOut('fast', function() {
+$('.loader-wrapper').fadeOut('slow', function() {
     $(this).remove();
 });

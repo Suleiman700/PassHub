@@ -7,7 +7,7 @@ import buttonDeleteAllHistory from '../buttons/button-delete-all-history.js';
 import Tbl_SuccessfulLogins from '../tables/Tbl_SuccessfulLogins.js';
 
 // requests
-import RequestPost from '/javascript/requests/RequestPost.js';
+import RequestPost from '../../../../javascript/requests/RequestPost.js';
 
 class Modal_DeleteHistory {
 

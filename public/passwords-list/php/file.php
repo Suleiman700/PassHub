@@ -1,6 +1,7 @@
 <?php
 
 // this will reject request and return error message to user then do exit;
+require_once '../../../settings/config.php';
 require_once '../../../functions/requests/reject-request-in-lock-mode.php';
 
 if (isset($_GET['model']) && $_GET['model'] === 'fetchPasswords') {

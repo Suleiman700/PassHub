@@ -7,6 +7,6 @@ import inputCategoryColor from './inputs/input-category-color.js';
 import buttonSubmit from './buttons/button-submit.js';
 import buttonCancel from './buttons/button-cancel.js';
 
-$('.loader-wrapper').fadeOut('fast', function() {
+$('.loader-wrapper').fadeOut('slow', function() {
     $(this).remove();
 });

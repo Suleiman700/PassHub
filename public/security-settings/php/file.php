@@ -1,5 +1,6 @@
 <?php
 
+require_once '../../../settings/config.php';
 require_once '../../../classes/authentication/Session.php';
 require_once '../../../classes/users/Users.php';
 require_once '../../../classes/users/UsersSettings.php';

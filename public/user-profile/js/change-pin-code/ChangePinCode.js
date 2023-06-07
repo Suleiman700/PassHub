@@ -7,10 +7,10 @@ import inputPassword from './inputs/input-password.js'
 import buttonSave from './buttons/button-save.js';
 
 // requests
-import RequestPost from '/javascript/requests/RequestPost.js';
+import RequestPost from '../../../../javascript/requests/RequestPost.js';
 
 // validators
-import PinCodeValidator from '/javascript/validators/PinCodeValidator.js';
+import PinCodeValidator from '../../../../javascript/validators/PinCodeValidator.js';
 
 class ChangePinCode {
 

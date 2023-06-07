@@ -3,7 +3,7 @@
 import buttonConfirmDelete from './buttons/button-confirm-delete.js';
 
 // requests
-import RequestPost from '/javascript/requests/RequestPost.js';
+import RequestPost from '../../../../javascript/requests/RequestPost.js';
 
 
 class Modal_DeleteCategory {

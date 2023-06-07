@@ -11,7 +11,7 @@ import labelFullName from '../labels/label-fullname.js';
 import labelSidebarFullname from '../../../../include/components/js/labels/label-sidebar-fullname.js';
 
 // requests
-import RequestPost from '/javascript/requests/RequestPost.js';
+import RequestPost from '../../../../javascript/requests/RequestPost.js';
 
 class ChangeFullName {
 

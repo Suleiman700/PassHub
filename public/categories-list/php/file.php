@@ -4,6 +4,7 @@
 require_once '../../../functions/requests/reject-request-in-lock-mode.php';
 
 if (isset($_GET['model']) && $_GET['model'] === 'fetchCategories') {
+    require_once '../../../settings/config.php';
     require_once '../../../classes/authentication/Session.php';
     require_once '../../../classes/categories/Categories.php';
     $Session = new Session();

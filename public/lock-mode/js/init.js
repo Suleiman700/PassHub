@@ -1,7 +1,7 @@
-import RequestPost from '/javascript/requests/RequestPost.js';
+import RequestPost from '../../../javascript/requests/RequestPost.js';
 
 // encryption
-import EncryptionService from '/javascript/security/EncryptionService.js';
+import EncryptionService from '../../../javascript/security/EncryptionService.js';
 
 const infoLabel = document.querySelector('#info-label')
 
@@ -69,7 +69,7 @@ async function checkAllInputs() {
                 allowOutsideClick: false,
                 confirmButtonText: 'Ok'
             }).then(function() {
-                window.location = '../dashboard/index.php';
+                window.location = '../categories-list/index.php';
             });
         }
         else {

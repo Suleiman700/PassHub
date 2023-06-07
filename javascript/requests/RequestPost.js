@@ -30,7 +30,6 @@ class RequestPost {
                         // }
                     } catch {
                         console.log(res);
-                        console.log('here2')
                         reject(res);
                     }
                 },

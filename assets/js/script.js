@@ -1,3 +1,11 @@
+
+import LocalStorageManager from '../../javascript/managers/local-storage-manager/LocalStorageManager.js';
+
+// check light mode
+if (LocalStorageManager.getLightMode() === 'dark') {
+    $('body').addClass("dark-only");
+}
+
 (function($) {
     "use strict";
     $(".mobile-toggle").click(function(){
@@ -27,7 +35,7 @@
     });
 })(jQuery);
 
-// $('.loader-wrapper').fadeOut('fast', function() {
+// $('.loader-wrapper').fadeOut('slow', function() {
 //     $(this).remove();
 // });
 
@@ -304,19 +312,20 @@ $('.job-sidebar .job-toggle ').on('click', function(e) {
 
 
 // themes
-$(".mode").on("click", function () {
-        // $('.mode i').toggleClass("fa-moon-o").toggleClass("fa-lightbulb-o");
-        // $('.mode-sun').toggleClass("show")
-        $('body').toggleClass("dark-only");
-        // var color = $(this).attr("data-attr");
+$(".light-mode").on("click", function () {
+    // $('.mode i').toggleClass("fa-moon-o").toggleClass("fa-lightbulb-o");
+    // $('.mode-sun').toggleClass("show")
+    $('body').toggleClass("dark-only");
+    // var color = $(this).attr("data-attr");
 
-        if ($("body").hasClass("dark-only")) {
-            localStorage.setItem('dark', 'dark-only');
-        }
-        else {
-            localStorage.removeItem('dark');
-        }
+    if ($("body").hasClass("dark-only")) {
+        LocalStorageManager.setLightMode('dark')
+    }
+    else {
+        LocalStorageManager.setLightMode('light')
+    }
 
-
-    // console.log(color)
-    });
+    // store light-mode in local storage
+    // localStorage.setItem('')
+// console.log(color)
+});

@@ -1,4 +1,4 @@
-import LabelManager from '/javascript/managers/label-manager/LabelManager.js';
+import LabelManager from '../../../../javascript/managers/label-manager/LabelManager.js';
 
 const parentId = 'pageWrapper'
 const id = 'label_fullname'

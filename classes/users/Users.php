@@ -1,7 +1,7 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/classes//helpers/Encryption.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/classes/helpers/Generators.php';
+require_once $baseUrl.'/classes//helpers/Encryption.php';
+require_once $baseUrl.'/classes/helpers/Generators.php';
 
 class Users
 {

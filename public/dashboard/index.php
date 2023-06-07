@@ -31,7 +31,24 @@ require_once '../../include/page-head.php';
         <div class="page-body">
             <!-- Container-fluid starts-->
             <div class="container-fluid dashboard-default-sec">
-                <div class="row">
+                <div class="container-fluid">
+                    <div class="page-header">
+                        <div class="row">
+                            <div class="col-12">
+                                <h3>Dashboard</h3>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item active">Dashboard</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 box-col-12 des-xl-100">
+                    <div class="card profile-greeting py-3 text-center d-flex justify-content-center">
+                        <h6 class="text-muted">Dashboard Is Coming Soon...</h6>
+                    </div>
+                </div>
+                <div class="row" hidden>
                     <div class="col-xl-5 box-col-12 des-xl-100">
                         <div class="row">
                             <div class="col-xl-12 col-md-6 box-col-6 des-xl-50">

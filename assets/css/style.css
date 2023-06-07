@@ -11355,7 +11355,7 @@ label {
 
 .checkbox input[type="checkbox"]:checked + label::before {
   font-family: themify;
-  content: "\e64c";
+  content: "\2713";
   text-align: center;
   line-height: 1.2; }
 

@@ -127,7 +127,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `fullname`, `email`, `password`, `pin_code`) VALUES
-(0, 'PassHub User', 'passhub-user@gmail.com', '$2y$10$ZX0E2oIWhjlNk4SdommRaeeCBYcyG/KX35G9lxNEb4ylYHN47ZFnG', '1234');
+(0, 'PassHub User', 'user@gmail.com', '$2y$10$SINoN1TR0oVIetsm.cLXLOPph5zXwWuJTzZRA8sxYQlqbeCLtQBBK', '1234');
 
 -- --------------------------------------------------------
 

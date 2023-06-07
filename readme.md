@@ -3,19 +3,40 @@
 
 A passwords management system in php.
 
+---
+
 # Features:
 
 * `Categories` - categories is useful to organize your passwords.
 * `Passwords` - store your passwords.
-* `Security` - See successful and failed logins.
+* `Logins Activities` - See successful and failed logins activities.
 * `Lock Mode` - Enter lock mode to secure your account.
 * `Alerts` - Receive alert via mail.
+
+---
 
 ### Usage:
 1. Download project.
 2. Create MySql database names `passhub`.
-3. import the `.sql` to that created database.
+3. import the `passhub-database.sql` to that created database.
 4. Open `settings/db.php` and enter your DB connection settings.
+5. Open `settings/config.php` and change the `$baseUrl` to your app path (DON'T add `/` in the end, Example: www.domain.com/projects/passhub)
+6. Goto passhub database in `phpMyAdmin` then open `smtp_settings` table and enter your SMTP settings
+7. Finally open the app in your browser by the `$baseUrl` you provided in the `settings/config.php` file
+8. Default login details:
+   * `email`: user@gmail.com
+   * `password`: user
+   * `pin-code`: 1234
+
+---
+
+### Testing Connection:
+You can test the connection of SMTP and DB by opening these files
+
+1. Testing SMTP connection: `testing/mail/test-mail-connection.php`
+2. Testing DB connection: `testing/db/test-db-connection.php`
+
+Just open the `.php` file in your browser
 
 ---
 

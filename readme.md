@@ -3,6 +3,8 @@
 
 A passwords management system in php.
 
+**Make sure to use PHP version at least `8.0`**
+
 ---
 
 # Features:
@@ -27,6 +29,8 @@ A passwords management system in php.
    * `email`: user@gmail.com
    * `password`: user
    * `pin-code`: 1234
+
+
 
 ---
 

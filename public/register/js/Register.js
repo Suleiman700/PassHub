@@ -12,11 +12,11 @@ import buttonRegister from './buttons/button-register.js';
 import alert from './alerts/alert.js';
 
 // validators
-import EmailValidator from '/javascript/validators/EmailValidator.js';
-import PinCodeValidator from '/javascript/validators/PinCodeValidator.js';
+import EmailValidator from '../../../javascript/validators/EmailValidator.js';
+import PinCodeValidator from '../../../javascript/validators/PinCodeValidator.js';
 
 // requests
-import RequestPost from '/javascript/requests/RequestPost.js';
+import RequestPost from '../../../javascript/requests/RequestPost.js';
 
 class Register {
     constructor() {}

@@ -1,5 +1,7 @@
 <?php
 
+require_once '../../../settings/config.php';
+
 if (isset($_POST['model']) && $_POST['model'] === 'performRegister') {
     require_once '../../../classes/authentication/Session.php';
     require_once '../../../classes/authentication/Login.php';

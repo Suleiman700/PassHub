@@ -3,6 +3,10 @@
 
 A passwords management system in php.
 
+Tired of struggling to remember passwords for all your accounts? Look no further!
+
+Introducing my PHP-based password manager app, PassHub! 🚀
+
 **Make sure to use PHP version at least `8.0`**
 
 ---
